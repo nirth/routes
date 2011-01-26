@@ -1,0 +1,7 @@
+[26 January, 2011]
+eu.kiichigo.route.routes.Handle added to work with flash.event.EventDispatcher and flash.event.Event classes.
+
+
+[25 January, 2011]
+
+Added core interfaces.
