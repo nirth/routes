@@ -1,5 +1,7 @@
 package eu.kiichigo.route.kore
 {
+	import eu.kiichigo.route.routes.IRoute;
+
 	public interface IAction
 	{
 		/**

@@ -1,5 +1,7 @@
 package eu.kiichigo.route.kore
 {
+	import eu.kiichigo.route.routes.IRoute;
+	
 	import spark.skins.spark.mediaClasses.fullScreen.FullScreenButtonSkin;
 
 	public class Action implements IAction, IGuard

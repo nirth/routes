@@ -1,5 +1,6 @@
 package eu.kiichigo.route.kore
 {
+	import eu.kiichigo.route.routes.IRoute;
 	import eu.kiichigo.route.utils.ICache;
 
 	public interface IRouter

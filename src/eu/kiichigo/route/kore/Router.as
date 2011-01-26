@@ -1,5 +1,6 @@
 package eu.kiichigo.route.kore
 {
+	import eu.kiichigo.route.routes.IRoute;
 	import eu.kiichigo.route.utils.Cache;
 	import eu.kiichigo.route.utils.ICache;
 	import eu.kiichigo.route.utils.add;
@@ -9,8 +10,10 @@ package eu.kiichigo.route.kore
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
 	
-	import mx.utils.UIDUtil;
+	[Exclude(name="activate",kind="event")]
+	[Exclude(name="deactivate",kind="event")]
 	
+	[DefaultProperty("routes")]
 	public class Router extends EventDispatcher implements IRouter
 	{
 		/**
@@ -25,7 +28,8 @@ package eu.kiichigo.route.kore
 		public function get cache():ICache
 		{
 			// If Router.group will do more than a cache control - move this logic to state evaluation.
-			return Cache.get( _group );
+			log( "cache:", Cache.group( _group ) );
+			return Cache.group( _group );
 		}
 		
 		
@@ -102,6 +106,7 @@ package eu.kiichigo.route.kore
 		 */
 		protected function initialize( route:IRoute ):IRoute
 		{
+			log( "initializing {0}", route );
 			route.router = this;
 			
 			return route;

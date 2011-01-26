@@ -28,15 +28,49 @@ package eu.kiichigo.route.utils
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 
-	public function nextFrame( closure:Function, ...rest ):void
-	{
-		var handler:Function = function( event:Event ):void
-		{
-			( event.target as IEventDispatcher ).removeEventListener( event.type, handler );
-			closure.apply( null, rest );
-		}
+	public function nextFrame( closure:Function ):Function
+	{	
+		var beacon:Beacon = new Beacon;
 		
-		var sprite:Sprite = new Sprite;
-			sprite.addEventListener( Event.ENTER_FRAME, handler, false, 0, true );
+		return function():void
+		{	
+			beacon.add( closure );
+		}
+	}
+}
+import eu.kiichigo.route.utils.log;
+
+import flash.display.Sprite;
+import flash.events.Event;
+
+/**
+ * @private
+ */
+class Beacon extends Sprite
+{
+	/**
+	 * @private
+	 */
+	protected const closures:Vector.<Function> = new Vector.<Function>;
+	/**
+	 * @private
+	 */
+	public function add( closure:Function ):void
+	{
+		if( closures.indexOf( closure ) >= 0 )
+			return;
+		
+		closures.push( closure );
+		addEventListener( Event.ENTER_FRAME, handle );
+	}
+	/**
+	 * @private
+	 */
+	protected function handle( event:Event ):void
+	{
+		removeEventListener( Event.ENTER_FRAME, handle );
+		
+		for( var i:uint = 0; i < closures.length; i ++ )
+			closures.shift().apply();
 	}
 }

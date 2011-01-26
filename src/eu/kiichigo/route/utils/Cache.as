@@ -43,9 +43,9 @@ package eu.kiichigo.route.utils
 		/**
 		 * A Multiton Pattern creation method.
 		 */
-		public static function get( id:Object = "default" ):ICache
+		public static function group( id:Object = "default" ):ICache
 		{
-			if( instances[id] === null )
+			if( instances[id] == null )
 				instances[id] = new Cache;
 			
 			return instances[id];
