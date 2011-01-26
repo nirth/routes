@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" version="3">
+  <includeClasses>
+    <classEntry path="eu.kiichigo.route.kore.IRouter"/>
+    <classEntry path="eu.kiichigo.route.kore.IAgent"/>
+    <classEntry path="eu.kiichigo.route.kore.IAction"/>
+    <classEntry path="eu.kiichigo.route.kore.IActions"/>
+    <classEntry path="eu.kiichigo.route.kore.IAsyncAciton"/>
+    <classEntry path="eu.kiichigo.route.kore.IRPCAction"/>
+    <classEntry path="eu.kiichigo.route.kore.IGuard"/>
+    <classEntry path="eu.kiichigo.route.pattern.IPattern"/>
+    <classEntry path="eu.kiichigo.route.utils.Instance"/>
+    <classEntry path="eu.kiichigo.route.kore.Action"/>
+    <classEntry path="eu.kiichigo.route.kore.Router"/>
+    <classEntry path="eu.kiichigo.route.perceive.Perceiver"/>
+    <classEntry path="eu.kiichigo.route.routes.Route"/>
+    <classEntry path="eu.kiichigo.route.pattern.Pattern"/>
+    <classEntry path="eu.kiichigo.route.utils.ICommitable"/>
+    <classEntry path="eu.kiichigo.route.perceive.Events"/>
+    <classEntry path="eu.kiichigo.route.routes.Handle"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>
