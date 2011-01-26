@@ -19,18 +19,19 @@ package eu.kiichigo.route.perceive
 		
 		override protected function process( route:IRoute ):IRoute
 		{
-			log( "processing route:{0}", route );
-			
 			if( route.pattern is IPattern )
 				proxy.addEventListener( ( route.pattern as IPattern ).retreive( "type" ) as String, handle );
 			
+			log( "processing route:{0}, total:{1}", route, routes.length  );
 			
 			return route;
 		}
 
-		private function handle( event:Event ):void
+		protected function handle( event:Event ):void
 		{
-			log( "handling event:{0}", event );
+			log( "handle:", event );
+			for( var i:uint = 0; i < routes.length; i ++ )
+				routes[i].perceive( event );
 		}
 	}
 }

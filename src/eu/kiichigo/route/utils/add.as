@@ -5,6 +5,9 @@ package eu.kiichigo.route.utils
 	{
 		return function( from:Object ):void
 		{
+			while( to.length )
+				to.shift();
+			
 			if( to.fixed )
 				to.fixed = false;
 			

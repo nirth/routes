@@ -53,6 +53,8 @@ package eu.kiichigo.route.pattern
 		 */
 		public function match( percept:Object ):Boolean
 		{
+			if( matcher as Function )
+				return matcher( this, percept );
 			return false;
 		}
 	}

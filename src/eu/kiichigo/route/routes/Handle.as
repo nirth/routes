@@ -1,6 +1,7 @@
 package eu.kiichigo.route.routes
 {
 	import eu.kiichigo.route.pattern.Pattern;
+	import eu.kiichigo.route.pattern.match.values;
 	import eu.kiichigo.route.perceive.Events;
 	import eu.kiichigo.route.utils.log;
 
@@ -17,6 +18,9 @@ package eu.kiichigo.route.routes
 			super();
 			
 			perceiver = Events;
+			
+			pattern = new Pattern;
+			pattern.matcher = values;
 		}
 		
 		public function get event():String

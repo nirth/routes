@@ -81,7 +81,7 @@ package eu.kiichigo.route.routes
 		/**
 		 * @private
 		 */
-		protected const _actions:Vector.<Object> = new Vector.<Object>;
+		protected const _actions:Vector.<IAction> = new Vector.<IAction>;
 		/**
 		 * @copy		eu.kiichigo.route.routes.IRoute#actions
 		 */
@@ -157,15 +157,54 @@ package eu.kiichigo.route.routes
 		}
 		
 		
+		public function perceive( percept:Object ):Object
+		{
+			if( pattern == null ||
+				!( pattern is IPattern ? pattern.match( percept ) : pattern( percept ) ) )
+				return null;
+			
+			log( "perceive percept:{0} with a pattern:{1}, total actions:{2}", percept, _pattern, _actions.length );
+			
+			for( var i:uint = 0; i < _actions.length; i ++ )
+				actions[i].run( percept );
+			
+			return percept;
+		}
+		
+		
 		/**
 		 * @private
 		 * Initializes an action with an instance of <code>IRoute</code>. Accepts instances of <code>IAction</code> and <code>Function</code>.
 		 */
-		protected function process( action:Object ):Object
+		protected function process( action:Object ):IAction
 		{
 			if( action is IAction )
 				action.route = this;
-			return action;
+			
+			log( "process:", action );
+			
+			return ( action is IAction ? action : new Closure( action as Function ) ) as IAction;
 		}
+	}
+}
+import eu.kiichigo.route.kore.Action;
+import eu.kiichigo.route.utils.log;
+
+class Closure extends Action
+{
+	public function Closure( closure:Function )
+	{
+		this.closure = closure;
+	}
+	
+	public var closure:Function;
+	
+	override protected function exec( percept:Object ):void
+	{
+		trace( "closure.exec", closure.length );
+		if( closure.length == 0 )
+			closure.call();
+		else if( closure.length == 1 )
+			closure.call( null, percept );
 	}
 }

@@ -48,12 +48,14 @@ package eu.kiichigo.route.routes
 		 * <code>IPattern</code> instance or <code>closure</code> that will evaluate incoming <code>percept</code> and "decide" whether current <code>IRoute</code> instance will accept it or not.
 		 * In case of closure - allowed signatures are:
 		 * <code>function ( percept:Object ):Boolean</code>
-		 * <code>function ( pattern:Object, percept:Object ):Boolean</code>.
 		 */
 		function get pattern():Object;
 		/**
 		 * @private
 		 */
 		function set pattern( value:Object ):void;
+		
+		
+		function perceive( percept:Object ):Object;
 	}
 }

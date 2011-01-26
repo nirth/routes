@@ -1,11 +1,19 @@
 package eu.kiichigo.route.kore
 {
 	import eu.kiichigo.route.routes.IRoute;
+	import eu.kiichigo.route.utils.log;
 	
 	import spark.skins.spark.mediaClasses.fullScreen.FullScreenButtonSkin;
 
 	public class Action implements IAction, IGuard
 	{
+		/**
+		 * @private
+		 * Logging
+		 */
+		protected static const log:Function = eu.kiichigo.route.utils.log( Action );
+		
+		
 		/**
 		 * @private
 		 */
@@ -50,22 +58,24 @@ package eu.kiichigo.route.kore
 		 */
 		public function run( percept:Object ):IAction
 		{
-			if( evaluate() )
+			if( evaluate( percept ) )
 				exec( percept );
 			
 			return this;
 		}
 		
-		protected function evaluate():Boolean
+		protected function evaluate( percept:Object = null ):Boolean
 		{
-			if( _predicate === null )
-				return true;
-			else if( _predicate is Function )
-				return _predicate.call() as Boolean;
+			if( _predicate == null )
+				var result:Boolean = true; // default is true
 			else if( _predicate is Boolean )
-				return _predicate;
+				result = _predicate;
+			else if( _predicate is Function && _predicate.length == 0 )
+				result = _predicate.call();
+			else if( _predicate is Function && _predicate.length == 1 )
+				result = _predicate.call( null, percept );
 			
-			return true;
+			return result;
 		}
 		
 		/**

@@ -19,8 +19,12 @@ package eu.kiichigo.route.perceive
 			if( route === null )
 				return null;
 			
+			
 			routes.fixed = false;
-			routes.push( process( route ) );
+			if( routes.indexOf( route ) == -1 )
+				routes.push( process( route ) );
+			else
+				process( route );
 			routes.fixed = true;
 			
 			return route;
