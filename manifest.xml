@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<componentPackage>
+	
+	<component class="eu.kiichigo.route.kore.Router" />
+	
+	<!--
+		Routes
+	-->
+	
+	<component class="eu.kiichigo.route.routes.Route" />
+	<component class="eu.kiichigo.route.routes.Handle" />
+	<component class="eu.kiichigo.route.routes.Inject" />
+	
+</componentPackage>
