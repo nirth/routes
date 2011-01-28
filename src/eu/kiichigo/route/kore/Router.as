@@ -1,5 +1,6 @@
 package eu.kiichigo.route.kore
 {
+	import eu.kiichigo.route.events.BuildEvent;
 	import eu.kiichigo.route.routes.IRoute;
 	import eu.kiichigo.route.utils.Cache;
 	import eu.kiichigo.route.utils.ICache;
@@ -21,16 +22,6 @@ package eu.kiichigo.route.kore
 		 * Logging
 		 */
 		protected static const log:Function = eu.kiichigo.route.utils.log( Router );
-		
-		/**
-		 * @copy		eu.kiichigo.route.kore.IRouter#cache
-		 */
-		public function get cache():ICache
-		{
-			// If Router.group will do more than a cache control - move this logic to state evaluation.
-			log( "cache:", Cache.group( _group ) );
-			return Cache.group( _group );
-		}
 		
 		
 		/**
@@ -98,6 +89,19 @@ package eu.kiichigo.route.kore
 				_routes.shift();
 			
 			_routes.fixed = true;
+		}
+		
+		/**
+		 * @copy		eu.kiichigo.route.kore.IRouter#build
+		 */
+		public function build( type:Class ):Object
+		{
+			if( Cache.group( _group ).has( type ) )
+				return Cache.group( _group ).retreive( type );
+			
+			var instance:Object = Cache.group( _group ).store( type, new type );
+			dispatchEvent( new BuildEvent( BuildEvent.BUILD, instance ) );
+			return instance;
 		}
 		
 		/**

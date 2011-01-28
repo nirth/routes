@@ -33,7 +33,7 @@ package eu.kiichigo.route.routes
 		{
 			// If perceiver set as Class, and _router is passed, ask router to create and cache an instance of IPerceiver
 			if( generator::perceiver != null && instance::perceiver == null && _router != null )
-				instance::perceiver = _router.cache.instance( generator::perceiver ) as IPerceiver;
+				instance::perceiver = _router.build( generator::perceiver ) as IPerceiver;
 				
 			if( instance::perceiver == null ||
 				_actions 			== null ||
@@ -60,6 +60,7 @@ package eu.kiichigo.route.routes
 		 * @private
 		 */
 		protected var _router:IRouter;
+		
 		/**
 		 * @copy		eu.kiichigo.route.routes.IRoute#router
 		 */
@@ -159,8 +160,6 @@ package eu.kiichigo.route.routes
 				!( pattern is IPattern ? pattern.match( percept ) : pattern( percept ) ) )
 				return null;
 			
-			log( "perceive percept:{0} with a pattern:{1}, total actions:{2}", percept, _pattern, _actions.length );
-			
 			for( var i:uint = 0; i < _actions.length; i ++ )
 				actions[i].run( percept );
 			
@@ -176,8 +175,6 @@ package eu.kiichigo.route.routes
 		{
 			if( action is IAction )
 				action.route = this;
-			
-			log( "process:", action );
 			
 			return ( action is IAction ? action : new Closure( action as Function ) ) as IAction;
 		}

@@ -38,9 +38,7 @@ package eu.kiichigo.route.perceive
 		 */
 		protected function handle( event:Event ):void
 		{
-			log( "handle:", event );
-			for( var i:uint = 0; i < routes.length; i ++ )
-				routes[i].perceive( event );
+			send( event );
 		}
 	}
 }

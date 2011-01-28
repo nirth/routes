@@ -4,13 +4,7 @@ package eu.kiichigo.route.kore
 	import eu.kiichigo.route.utils.ICache;
 
 	public interface IRouter
-	{
-		/**
-		 * An instance of <code>ICache</code> that handles creation and caching of <code>Models</code>, <code>Views</code> and various <code>Utility</code> classes.
-		 * <code>ICache</code> can be shared by multiple <code>IRouter</code> by changing <code>IRouter.group</code> value.
-		 */
-		function get cache():ICache;
-		
+	{	
 		/**
 		 * Indicates a group to wich current <code>IRouter</code> belongs. Default value is <code>null</code> which means that no group is created.
 		 */
@@ -29,6 +23,14 @@ package eu.kiichigo.route.kore
 		 */
 		function set routes( value:Vector.<IRoute> ):void;
 		
+		
+		/**
+		 * Creates new instance of <code>class</code> provided in argument <code>type</code> or returns previosly cached one. 
+		 * @param type			<code>Class</code> of instance to be retreived.
+		 * @return 				Instance of a <code>class</code> provided in argument <code>type</code>
+		 * 
+		 */
+		function build( type:Class ):Object;
 		
 		/**
 		 * Adds <code>IRoute</code> to a list of <code>IRouter.routes</code> and returns newly added <code>IRoute</code>.
