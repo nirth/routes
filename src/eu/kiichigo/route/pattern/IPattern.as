@@ -6,7 +6,7 @@ package eu.kiichigo.route.pattern
 	public interface IPattern extends IHash
 	{
 		/**
-		 * 
+		 * Referece to parent instance of <code>IRoute</code>.
 		 */
 		function get route():IRoute;
 		/**
@@ -29,13 +29,12 @@ package eu.kiichigo.route.pattern
 		 */
 		function set matcher( value:Function ):void;
 		
-		
-		/**
-		 * 
 		/**
 		 * Evaluates <code>percept</code> received by <code>IRoute</code> and returns <code>Boolean</code>.
 		 * If <code>true</code> <code>IRoute</code> will execute <code>IAction</code> instances and closures.
 		 */
 		function match( percept:Object ):Boolean;
+		
+		
 	}
 }

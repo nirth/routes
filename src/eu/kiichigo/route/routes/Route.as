@@ -29,7 +29,7 @@ package eu.kiichigo.route.routes
 		 * @private
 		 * Handles initialization once pattern, perceiver and actions are set.
 		 */
-		protected function initialize():void
+		protected function commit():void
 		{
 			// If perceiver set as Class, and _router is passed, ask router to create and cache an instance of IPerceiver
 			if( generator::perceiver != null && instance::perceiver == null && _router != null )
@@ -73,8 +73,7 @@ package eu.kiichigo.route.routes
 		public function set router( value:IRouter ):void
 		{
 			_router = value;
-			
-			initialize();
+			commit();
 		}
 		
 		
@@ -99,8 +98,7 @@ package eu.kiichigo.route.routes
 				value = [value];
 			
 			eu.kiichigo.route.utils.add( _actions, process )( value );
-			
-			initialize();
+			commit();
 		}
 		
 		
@@ -129,8 +127,7 @@ package eu.kiichigo.route.routes
 				instance::perceiver = value as IPerceiver;
 			else if( value is Class )
 				generator::perceiver = value as Class;
-
-			initialize();
+			commit();
 		}
 		
 		
@@ -152,8 +149,7 @@ package eu.kiichigo.route.routes
 		public function set pattern( value:Object ):void
 		{
 			_pattern = value;
-			
-			initialize();
+			commit();
 		}
 		
 		
@@ -197,7 +193,7 @@ class Closure extends Action
 		this.closure = closure;
 	}
 	
-	public var closure:Function;
+	protected var closure:Function;
 	
 	override protected function exec( percept:Object ):void
 	{

@@ -3,7 +3,7 @@ package eu.kiichigo.route.utils
 	public interface IHash
 	{
 		/**
-		 * List of properties.
+		 * List of keys stored in <code>IHash</code>.
 		 */
 		function get keys():Vector.<Object>;
 		

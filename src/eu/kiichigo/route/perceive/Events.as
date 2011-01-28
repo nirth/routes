@@ -15,8 +15,14 @@ package eu.kiichigo.route.perceive
 		 */
 		protected static const log:Function = eu.kiichigo.route.utils.log( Events );
 		
+		/**
+		 * @private
+		 */
 		protected const proxy:IEventProxy = new EventProxy( EventProxy.APPLICATION );
 		
+		/**
+		 * @inheritDoc
+		 */
 		override protected function process( route:IRoute ):IRoute
 		{
 			if( route.pattern is IPattern )
@@ -26,7 +32,10 @@ package eu.kiichigo.route.perceive
 			
 			return route;
 		}
-
+		
+		/**
+		 * @private
+		 */
 		protected function handle( event:Event ):void
 		{
 			log( "handle:", event );

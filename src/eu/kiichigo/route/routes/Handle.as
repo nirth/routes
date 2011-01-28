@@ -1,9 +1,14 @@
 package eu.kiichigo.route.routes
 {
+	import eu.kiichigo.route.pattern.IPattern;
 	import eu.kiichigo.route.pattern.Pattern;
+	import eu.kiichigo.route.pattern.Patterns;
+	import eu.kiichigo.route.pattern.match.type;
 	import eu.kiichigo.route.pattern.match.values;
 	import eu.kiichigo.route.perceive.Events;
 	import eu.kiichigo.route.utils.log;
+	
+	import flash.events.Event;
 
 	public class Handle extends Route
 	{
@@ -13,28 +18,34 @@ package eu.kiichigo.route.routes
 		 */
 		protected static const log:Function = eu.kiichigo.route.utils.log( Handle );
 		
+		/**
+		 * @private
+		 */
+		protected const eventPattern:IPattern = new Pattern;
+		
 		public function Handle()
 		{
 			super();
 			
 			perceiver = Events;
 			
-			pattern = new Pattern;
-			pattern.matcher = values;
+			var typePattern:Pattern = new Pattern;
+			typePattern.matcher = type;
+				typePattern.store( "type", Event );
+				
+			eventPattern.matcher = values;
+
+			pattern = new Patterns( typePattern, eventPattern );
 		}
 		
 		public function get event():String
 		{
-			if( pattern )
-				return pattern.retreive( "type" );
-			return null;
+			return eventPattern.retreive( "type" ) as String
 		}
 		
 		public function set event( value:String ):void
 		{
-			if( pattern == null )
-				pattern = new Pattern;
-			pattern.store( "type", value );
+			eventPattern.store( "type", value );
 		}
 	}
 }

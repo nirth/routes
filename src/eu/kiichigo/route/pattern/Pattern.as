@@ -32,6 +32,7 @@ package eu.kiichigo.route.pattern
 		 * @private
 		 */
 		protected var _matcher:Function;
+		
 		/**
 		 * @copy		eu.kiichigo.route.pattern.IPattern#matcher
 		 */
@@ -48,6 +49,13 @@ package eu.kiichigo.route.pattern
 		}
 		
 		
+		/**
+		 * @copy		eu.kiichigo.route.pattern.IPattern#item
+		 */
+		public function item( key:Object = null ):Object
+		{
+			return retreive( key );
+		}
 		/**
 		 * @copy		eu.kiichigo.route.pattern.IPattern#matcher
 		 */
