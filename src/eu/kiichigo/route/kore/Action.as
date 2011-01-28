@@ -23,7 +23,7 @@ package eu.kiichigo.route.kore
 		 */
 		public function get route():IRoute
 		{
-			return null;
+			return _route;
 		}
 		/**
 		 * @private
@@ -31,6 +31,7 @@ package eu.kiichigo.route.kore
 		public function set route(value:IRoute):void
 		{
 			_route = value;
+			commit();
 		}
 		
 		
@@ -64,6 +65,12 @@ package eu.kiichigo.route.kore
 			return this;
 		}
 		
+		/**
+		 * Auxilary function, evaluates whether instance of <code>IAction</code> will be executed or not.
+		 *  
+		 * @param percept		Incoming from <code>IRoute</code> percept.
+		 * @return 				<code>Boolean</code> value indicating wether function will or will not be run.
+		 */
 		protected function evaluate( percept:Object = null ):Boolean
 		{
 			if( _predicate == null )
@@ -82,6 +89,15 @@ package eu.kiichigo.route.kore
 		 * Override this method in subclassed, in order to implement functionality of a <code>Action</code>
 		 */
 		protected function exec( percept:Object ):void
+		{
+			
+		}
+		
+		/**
+		 *  
+		 * 
+		 */		
+		protected function commit():void
 		{
 			
 		}

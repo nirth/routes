@@ -1,6 +1,8 @@
 package eu.kiichigo.route.routes
 {
+	import eu.kiichigo.route.kore.Actions;
 	import eu.kiichigo.route.kore.IAction;
+	import eu.kiichigo.route.kore.IActions;
 	import eu.kiichigo.route.kore.IRouter;
 	import eu.kiichigo.route.pattern.IPattern;
 	import eu.kiichigo.route.perceive.IPerceiver;
@@ -24,7 +26,6 @@ package eu.kiichigo.route.routes
 		protected namespace generator;
 		protected namespace instance;
 		
-		//ToDo: see if initialize can be run only once, or it should be transformed to something like commitProperties on IInvalidating.
 		/**
 		 * @private
 		 * Handles initialization once pattern, perceiver and actions are set.
@@ -81,7 +82,7 @@ package eu.kiichigo.route.routes
 		/**
 		 * @private
 		 */
-		protected const _actions:Vector.<IAction> = new Vector.<IAction>;
+		protected var _actions:IActions;
 		/**
 		 * @copy		eu.kiichigo.route.routes.IRoute#actions
 		 */
@@ -94,11 +95,16 @@ package eu.kiichigo.route.routes
 		 */
 		public function set actions( value:Object ):void
 		{
-			//In case single instance of Function or Action is passed, wrap it in an Array.
-			if( value is Function || value is IAction )
-				value = [value];
-			
-			eu.kiichigo.route.utils.add( _actions, process )( value );
+			if( value is IActions )
+				_actions = value as IActions;
+			else
+			{
+				if( value is Function || value is IAction )
+					value = [value];
+				
+				_actions = new Actions;
+				_actions.list = value;
+			}
 			commit();
 		}
 		
@@ -154,50 +160,18 @@ package eu.kiichigo.route.routes
 		}
 		
 		
+		/**
+		 * @copy 		eu.kiichigo.route.routes.IRoute#perceive
+		 */
 		public function perceive( percept:Object ):Object
 		{
 			if( pattern == null ||
 				!( pattern is IPattern ? pattern.match( percept ) : pattern( percept ) ) )
 				return null;
 			
-			for( var i:uint = 0; i < _actions.length; i ++ )
-				actions[i].run( percept );
+			_actions.run( percept );
 			
 			return percept;
 		}
-		
-		
-		/**
-		 * @private
-		 * Initializes an action with an instance of <code>IRoute</code>. Accepts instances of <code>IAction</code> and <code>Function</code>.
-		 */
-		protected function process( action:Object ):IAction
-		{
-			if( action is IAction )
-				action.route = this;
-			
-			return ( action is IAction ? action : new Closure( action as Function ) ) as IAction;
-		}
-	}
-}
-import eu.kiichigo.route.kore.Action;
-import eu.kiichigo.route.utils.log;
-
-class Closure extends Action
-{
-	public function Closure( closure:Function )
-	{
-		this.closure = closure;
-	}
-	
-	protected var closure:Function;
-	
-	override protected function exec( percept:Object ):void
-	{
-		trace( "closure.exec", closure.length );
-		if( closure.length == 0 )
-			closure.call();
-		else if( closure.length == 1 )
-			closure.call( null, percept );
 	}
 }

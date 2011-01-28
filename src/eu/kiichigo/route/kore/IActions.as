@@ -5,10 +5,10 @@ package eu.kiichigo.route.kore
 		/**
 		 * Collection (vector) of <code>IAction</code> instances that will be run once this <code>IActions</code> instance is executed.
 		 */
-		function get actions():Vector.<IAction>;
+		function get list():Object;
 		/**
 		 * 
 		 */
-		function set actions( value:Vector.<IAction> ):void;
+		function set list( value:Object ):void;
 	}
 }
