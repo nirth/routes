@@ -42,15 +42,6 @@ package eu.kiichigo.route.utils
 		
 		
 		/**
-		 * Constructor
-		 */
-		public function Hash()
-		{
-			super();
-		}
-		
-		
-		/**
 		 * 
 		 */
 		protected const _keys:Vector.<Object> = new Vector.<Object>;
@@ -91,6 +82,7 @@ package eu.kiichigo.route.utils
 			return value;
 		}
 		
+		
 		/**
 		 * @copy		eu.kiichigo.routes.utils.IHash#clear
 		 */
@@ -102,6 +94,17 @@ package eu.kiichigo.route.utils
 			for( var i:uint = 0; i < _keys.length; i ++ )
 				_keys.shift();
 		}
+		
+		
+		/**
+		 * @copy		eu.kiichigo.routes.utils.IHash#clear
+		 */
+		public function forEach( closure:Function, scope:Object = null ):void
+		{
+			for( var key:Object in data )
+				closure.call( scope, key, data[key] );
+		}
+		
 		
 		/**
 		 * @inheritDoc

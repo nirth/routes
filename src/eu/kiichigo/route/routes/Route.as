@@ -5,7 +5,7 @@ package eu.kiichigo.route.routes
 	import eu.kiichigo.route.kore.IActions;
 	import eu.kiichigo.route.kore.IRouter;
 	import eu.kiichigo.route.pattern.IPattern;
-	import eu.kiichigo.route.perceive.IPerceiver;
+	import eu.kiichigo.route.sensor.ISensor;
 	import eu.kiichigo.route.routes.IRoute;
 	import eu.kiichigo.route.utils.Cache;
 	import eu.kiichigo.route.utils.ICommitable;
@@ -34,7 +34,7 @@ package eu.kiichigo.route.routes
 		{
 			// If perceiver set as Class, and _router is passed, ask router to create and cache an instance of IPerceiver
 			if( generator::perceiver != null && instance::perceiver == null && _router != null )
-				instance::perceiver = _router.build( generator::perceiver ) as IPerceiver;
+				instance::perceiver = _router.build( generator::perceiver ) as ISensor;
 				
 			if( instance::perceiver == null ||
 				_actions 			== null ||
@@ -112,7 +112,7 @@ package eu.kiichigo.route.routes
 		/**
 		 * @private
 		 */
-		instance var perceiver:IPerceiver = null;
+		instance var perceiver:ISensor = null;
 		/**
 		 * @private
 		 */
@@ -130,8 +130,8 @@ package eu.kiichigo.route.routes
 		 */
 		public function set perceiver( value:Object ):void
 		{
-			if( value is IPerceiver )
-				instance::perceiver = value as IPerceiver;
+			if( value is ISensor )
+				instance::perceiver = value as ISensor;
 			else if( value is Class )
 				generator::perceiver = value as Class;
 			commit();

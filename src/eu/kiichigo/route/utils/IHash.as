@@ -32,5 +32,14 @@ package eu.kiichigo.route.utils
 		 * Clears <code>ISimpleMap</code> instance.
 		 */
 		function clear():void;
+		
+		/**
+		 * Executes a closure on each key-value pair.
+		 * 
+		 * @param closure		Funciton closure that will be invoked for each key-value pair.
+		 * 						Closure should follow <code>function( key:Object, value:Object ):void;</code> signature.
+		 * @param scope			Scope of a function, to which <code>this</code> will refer, set as <code>null</code> to leave scope unchanged.
+		 */
+		function forEach( closure:Function, scope:Object = null ):void;
 	}
 }

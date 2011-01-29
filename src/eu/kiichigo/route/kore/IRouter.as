@@ -15,7 +15,7 @@ package eu.kiichigo.route.kore
 		function set group( value:Object ):void;
 		
 		/**
-		 * 
+		 * List of routes.
 		 */
 		function get routes():Vector.<IRoute>;
 		/**
@@ -32,6 +32,7 @@ package eu.kiichigo.route.kore
 		 */
 		function build( type:Class ):Object;
 		
+		
 		/**
 		 * Adds <code>IRoute</code> to a list of <code>IRouter.routes</code> and returns newly added <code>IRoute</code>.
 		 *  
@@ -39,6 +40,7 @@ package eu.kiichigo.route.kore
 		 * @return 			Added <code>IRoute</code> instance.
 		 */
 		function add( route:IRoute ):IRoute;
+		
 		
 		/**
 		 * Clears and removes all <code>IRoute</code> instances, reseting current <code>IRouter</code>.

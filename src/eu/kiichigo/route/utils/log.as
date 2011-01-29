@@ -69,8 +69,10 @@ package eu.kiichigo.route.utils
 					max --
 				}
 			}
-			else if( messages[0].toString().indexOf( "{" ) != -1 && 
-				messages[0].toString().indexOf( "}" ) != -1 )
+			else if( messages &&
+				     messages[0] &&
+					 messages[0].toString().indexOf( "{" ) != -1 && 
+					 messages[0].toString().indexOf( "}" ) != -1 )
 			{
 				string += messages.shift();
 				for( var i:int = 0; i < messages.length; i ++ )
