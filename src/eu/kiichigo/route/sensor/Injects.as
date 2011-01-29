@@ -1,4 +1,4 @@
-package eu.kiichigo.route.perceive
+package eu.kiichigo.route.sensor
 {
 	import eu.kiichigo.route.events.BuildEvent;
 	import eu.kiichigo.route.kore.IRouter;
@@ -10,7 +10,7 @@ package eu.kiichigo.route.perceive
 	
 	import mx.core.FlexGlobals;
 
-	public class Injects extends Perceiver
+	public class Injects extends Sensor
 	{
 		/**
 		 * @private

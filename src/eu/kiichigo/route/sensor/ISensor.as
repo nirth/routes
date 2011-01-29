@@ -1,9 +1,9 @@
-package eu.kiichigo.route.perceive
+package eu.kiichigo.route.sensor
 {
 	import eu.kiichigo.route.kore.IRouter;
 	import eu.kiichigo.route.routes.IRoute;
 
-	public interface IPerceiver
+	public interface ISensor
 	{
 		/**
 		 * <code>IRouter</code> reference

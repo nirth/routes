@@ -1,15 +1,15 @@
-package eu.kiichigo.route.perceive
+package eu.kiichigo.route.sensor
 {
 	import eu.kiichigo.route.kore.IRouter;
 	import eu.kiichigo.route.routes.IRoute;
 	import eu.kiichigo.route.utils.ICommitable;
 	
-	public class Perceiver implements IPerceiver
+	public class Sensor implements ISensor
 	{
 		/**
 		 * Constructor
 		 */
-		public function Perceiver()
+		public function Sensor()
 		{
 			super();
 			

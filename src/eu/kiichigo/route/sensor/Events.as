@@ -1,4 +1,4 @@
-package eu.kiichigo.route.perceive
+package eu.kiichigo.route.sensor
 {
 	import eu.kiichigo.route.pattern.IPattern;
 	import eu.kiichigo.route.routes.IRoute;
@@ -7,7 +7,7 @@ package eu.kiichigo.route.perceive
 	
 	import flash.events.Event;
 
-	public class Events extends Perceiver
+	public class Events extends Sensor
 	{
 		/**
 		 * @private
