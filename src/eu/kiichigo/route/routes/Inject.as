@@ -17,7 +17,7 @@ package eu.kiichigo.route.routes
 		{
 			super();
 			
-			perceiver = Injects;
+			sensor = Injects;
 			
 			pattern = new Pattern;
 			pattern.matcher = eu.kiichigo.route.pattern.match.type;

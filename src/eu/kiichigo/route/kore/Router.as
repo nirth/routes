@@ -91,6 +91,18 @@ package eu.kiichigo.route.kore
 			_routes.fixed = true;
 		}
 		
+		protected const _factory:IFactory = new Factory;
+		
+		/**
+		 * @copy		eu.kiichigo.route.kore.IRouter#factory
+		 */
+		public function get factory():IFactory
+		{
+			if( _factory.group === null )
+				_factory.group = _group;
+			return _factory;
+		}
+		
 		/**
 		 * @copy		eu.kiichigo.route.kore.IRouter#build
 		 */

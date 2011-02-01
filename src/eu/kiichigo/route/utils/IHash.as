@@ -33,6 +33,21 @@ package eu.kiichigo.route.utils
 		 */
 		function clear():void;
 		
+		
+		/**
+		 * Initializes instance of <code>IHash</code> from <code>source</code> source can be an <code>Object</code> with dynamic fields.
+		 * 
+		 * <code>
+		 * var myHash = new MyHashImpl().initialize( {x: 10, y: 20} );
+		 * trace( myHash.retreive( "x" ) ); // Will output 10
+		 * </code>
+		 * 
+		 * @param	source		<code>Object</code> containing properties to be stored as key-value on <code>IHash</code>
+		 * @return				An instance of <code>IHash</code>.
+		 */
+		function initialize( source:Object ):IHash;
+		
+		
 		/**
 		 * Executes a closure on each key-value pair.
 		 * 

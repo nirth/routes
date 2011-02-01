@@ -6,8 +6,16 @@ package eu.kiichigo.route.kore
 	{
 		/**
 		 * @private
+		 * Logging
+		 */
+		protected static const log:Function = eu.kiichigo.route.utils.log( Actions );
+		
+		
+		/**
+		 * @private
 		 */
 		protected const _list:Vector.<IAction> = new Vector.<IAction>;
+		
 		/**
 		 * @copy		eu.kiichigo.route.kore.IActions#list
 		 */
@@ -24,6 +32,7 @@ package eu.kiichigo.route.kore
 			commit();
 		}
 		
+		
 		/**
 		 * @inheritDoc
 		 */
@@ -32,6 +41,7 @@ package eu.kiichigo.route.kore
 			for( var i:uint = 0; i < _list.length; i ++ )
 				_list[i].run( percept );
 		}
+		
 		
 		/**
 		 * @private
@@ -42,11 +52,15 @@ package eu.kiichigo.route.kore
 			return ( action is IAction ? action : new Closure( action as Function ) ) as IAction;
 		}
 		
+		
 		/**
 		 * @inheritDoc
 		 */
 		override protected function commit():void
 		{
+			if( _route != null && _list.length > 0 )
+				for( var i:uint = 0; i < _list.length; i ++ )
+					_list[i].route = _route;
 		//	if( _route != null && _list.length > 0 )
 		//		_list.
 		}

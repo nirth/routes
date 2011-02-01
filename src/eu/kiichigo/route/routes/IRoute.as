@@ -36,13 +36,13 @@ package eu.kiichigo.route.routes
 		function set actions( value:Object ):void;
 		
 		/**
-		 * An instance of <code>IPerceiver</code> associated with current <code>IRoute</code>. Acceptable values are <code>IPerceiver</code> or <code>Class</code>.
+		 * An instance of <code>ISensor</code> associated with current <code>IRoute</code>. Acceptable values are instance of <code>ISensor</code> or <code>Class</code>.
 		 */
-		function get perceiver():Object;
+		function get sensor():Object;
 		/**
 		 * @private
 		 */
-		function set perceiver( value:Object ):void;
+		function set sensor( value:Object ):void;
 		
 		/**
 		 * <code>IPattern</code> instance or <code>closure</code> that will evaluate incoming <code>percept</code> and "decide" whether current <code>IRoute</code> instance will accept it or not.

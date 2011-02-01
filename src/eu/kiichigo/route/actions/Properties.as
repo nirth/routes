@@ -1,11 +1,12 @@
 package eu.kiichigo.route.actions
 {
 	import eu.kiichigo.route.kore.Action;
+	import eu.kiichigo.route.routes.IRoute;
 	import eu.kiichigo.route.utils.Hash;
 	import eu.kiichigo.route.utils.IHash;
 	import eu.kiichigo.route.utils.log;
 	
-	public dynamic class Properties extends Action implements IProperties
+	public class Properties extends Action implements IProperties
 	{
 		/**
 		 * @private
@@ -18,6 +19,7 @@ package eu.kiichigo.route.actions
 		 * @private
 		 */
 		protected const _fields:IHash = new Hash;
+		
 		/**
 		 * @copy		eu.kiichigo.route.actions.IProperty#fields
 		 */
@@ -26,9 +28,7 @@ package eu.kiichigo.route.actions
 			return _fields;
 		}
 		
-		
-		/**
-		 * 
+
 		/**
 		 * @private
 		 */
@@ -44,7 +44,7 @@ package eu.kiichigo.route.actions
 		/**
 		 * @private
 		 */
-		public function set from(value:Object):void
+		public function set from( value:Object ):void
 		{
 			_from = value;
 		}
@@ -53,7 +53,7 @@ package eu.kiichigo.route.actions
 		/**
 		 * @private
 		 */
-		protected var _to:Object;
+		protected var _to:Object = null;
 		
 		/**
 		 * @copy		eu.kiichigo.route.actions.IProperty#to
@@ -65,32 +65,56 @@ package eu.kiichigo.route.actions
 		/**
 		 * @private
 		 */
-		public function set to(value:Object):void
+		public function set to( value:Object ):void
 		{
 			_to = value;
 		}
+		
 		
 		/**
 		 * @inheritDoc
 		 */
 		override protected function exec( percept:Object ):void
 		{
-			// We assume that all properties was stored as dynamic fields of a IProperty
-			for( var field:String in this )
-				fields.store( field, this[field] );
-			
-			// If <code>from</code> is not defined, percept is used as a source.
-			if( _from === null )
-				_from = percept;
-			
-			fields.forEach( iterate );
+			if( evaluate( percept ) )
+				fields.initialize( this ).forEach( iterate );
 		}
 		
 		
 		/**
 		 * @private
 		 * 
-		 * Auxilary function, you should not override it unless you want to change data flow.
+		 * Auxiliary mehtod, handles intiailizaiton of <code>from</code> and <code>to</code> values.
+		 * 
+		 * @param	percept		A reference to the <code>percept</code> received by <code>IProperties</code>
+		 * @return				Boolean value. <code>true</code> if evaluation successful, <code>false</code> otherwise.
+		 */
+		protected function evaluate( percept:Object ):Boolean
+		{
+			// If from and to are null, quit.
+			if( _from === null || _to === null )
+				return false;
+			
+			if( _from === null )
+				_from = percept;
+			
+			if( _to === null )
+				_to = percept;
+			
+			if( _from is Class )
+				_from = _route.router.factory.create( _from as Class );
+			
+			if( _to is Class )
+				_to = _route.router.factory.create( _to as Class );
+			
+			return true;
+		}
+		
+		
+		/**
+		 * @private
+		 * 
+		 * Auxiliary method, you should not override it unless you want to change data flow.
 		 * 
 		 * @param key		<code>key</code> element a <code>IProperty.fields</code>
 		 * @param value		<code>value</code> element a <code>IProperty.fields</code>

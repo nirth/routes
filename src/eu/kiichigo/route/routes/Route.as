@@ -15,6 +15,8 @@ package eu.kiichigo.route.routes
 	[Exclude(name="activate",kind="event")]
 	[Exclude(name="deactivate",kind="event")]
 	
+	[DefaultProperty("actions")]
+	
 	public class Route implements IRoute
 	{
 		/**
@@ -33,16 +35,18 @@ package eu.kiichigo.route.routes
 		protected function commit():void
 		{
 			// If perceiver set as Class, and _router is passed, ask router to create and cache an instance of IPerceiver
-			if( generator::perceiver != null && instance::perceiver == null && _router != null )
-				instance::perceiver = _router.build( generator::perceiver ) as ISensor;
+			if( generator::sensor != null && instance::sensor == null && _router != null )
+				instance::sensor = _router.factory.create( generator::sensor ) as ISensor;
 				
-			if( instance::perceiver == null ||
-				_actions 			== null ||
-				_pattern 			== null ||
-				_router 			== null )
+			if( instance::sensor == null ||
+				_actions 		 == null ||
+				_pattern 	     == null ||
+				_router 		 == null )
 				return;
 			
-			instance::perceiver.add( this );
+			_actions.route = this;
+			
+			instance::sensor.add( this );
 		}
 		
 		/**
@@ -105,6 +109,7 @@ package eu.kiichigo.route.routes
 				_actions = new Actions;
 				_actions.list = value;
 			}
+
 			commit();
 		}
 		
@@ -112,28 +117,28 @@ package eu.kiichigo.route.routes
 		/**
 		 * @private
 		 */
-		instance var perceiver:ISensor = null;
+		instance var sensor:ISensor = null;
 		/**
 		 * @private
 		 */
-		generator var perceiver:Class = null;
+		generator var sensor:Class = null;
 
 		/**
 		 * @copy		eu.kiichigo.route.routes.IRoute#perceiver
 		 */
-		public function get perceiver():Object
+		public function get sensor():Object
 		{
-			return instance::perceiver !== null ? instance::perceiver : generator::perceiver;
+			return instance::sensor !== null ? instance::sensor : generator::sensor;
 		}
 		/**
 		 * @private
 		 */
-		public function set perceiver( value:Object ):void
+		public function set sensor( value:Object ):void
 		{
 			if( value is ISensor )
-				instance::perceiver = value as ISensor;
+				instance::sensor = value as ISensor;
 			else if( value is Class )
-				generator::perceiver = value as Class;
+				generator::sensor = value as Class;
 			commit();
 		}
 		

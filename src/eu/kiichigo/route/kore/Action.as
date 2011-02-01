@@ -59,19 +59,19 @@ package eu.kiichigo.route.kore
 		 */
 		public function run( percept:Object ):IAction
 		{
-			if( evaluate( percept ) )
+			if( check( percept ) )
 				exec( percept );
 			
 			return this;
 		}
 		
 		/**
-		 * Auxilary function, evaluates whether instance of <code>IAction</code> will be executed or not.
+		 * Auxilary function, checks whether instance of <code>IAction</code> will be executed or not.
 		 *  
 		 * @param percept		Incoming from <code>IRoute</code> percept.
 		 * @return 				<code>Boolean</code> value indicating wether function will or will not be run.
 		 */
-		protected function evaluate( percept:Object = null ):Boolean
+		protected function check( percept:Object = null ):Boolean
 		{
 			if( _predicate == null )
 				var result:Boolean = true; // default is true

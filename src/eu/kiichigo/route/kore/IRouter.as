@@ -23,14 +23,10 @@ package eu.kiichigo.route.kore
 		 */
 		function set routes( value:Vector.<IRoute> ):void;
 		
-		
 		/**
-		 * Creates new instance of <code>class</code> provided in argument <code>type</code> or returns previosly cached one. 
-		 * @param type			<code>Class</code> of instance to be retreived.
-		 * @return 				Instance of a <code>class</code> provided in argument <code>type</code>
-		 * 
+		 * Reference to an instance of <code>IFactory</code> for this <code>IRouter</code>.
 		 */
-		function build( type:Class ):Object;
+		function get factory():IFactory;
 		
 		
 		/**

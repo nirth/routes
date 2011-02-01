@@ -26,6 +26,8 @@ package eu.kiichigo.route.utils
 {
 	import flash.utils.Dictionary;
 	import flash.utils.getQualifiedClassName;
+	
+	import org.osmf.layout.AbsoluteLayoutFacet;
 
 	public class Hash implements IHash
 	{
@@ -95,6 +97,17 @@ package eu.kiichigo.route.utils
 				_keys.shift();
 		}
 		
+		/**
+		 * @copy		eu.kiichigo.routes.utils.IHash#initialize
+		 */
+		public function initialize( source:Object ):IHash
+		{
+			if( source != null )
+				for( var property:String in source )
+					store( property, source[property] );
+			
+			return this;
+		}
 		
 		/**
 		 * @copy		eu.kiichigo.routes.utils.IHash#clear

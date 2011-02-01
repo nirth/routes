@@ -27,7 +27,7 @@ package eu.kiichigo.route.routes
 		{
 			super();
 			
-			perceiver = Events;
+			sensor = Events;
 			
 			var typePattern:Pattern = new Pattern;
 			typePattern.matcher = type;
@@ -40,7 +40,7 @@ package eu.kiichigo.route.routes
 		
 		public function get event():String
 		{
-			return eventPattern.retreive( "type" ) as String
+			return eventPattern.retreive( "type" ) as String;
 		}
 		
 		public function set event( value:String ):void

@@ -2,8 +2,11 @@ package eu.kiichigo.route.actions
 {
 	import mx.binding.utils.BindingUtils;
 
-	public class Bind extends Properties
+	public dynamic class Bind extends Properties
 	{
+		/**
+		 * @inheritDoc
+		 */
 		override protected function process( from:Object, fromField:Object,
 											 to:Object, toField:Object ):void
 		{
