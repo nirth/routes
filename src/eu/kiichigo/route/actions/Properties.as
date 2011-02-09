@@ -102,10 +102,10 @@ package eu.kiichigo.route.actions
 				_to = percept;
 			
 			if( _from is Class )
-				_from = _route.router.factory.create( _from as Class );
+				_from = _route.router.instances.get( _from as Class );
 			
 			if( _to is Class )
-				_to = _route.router.factory.create( _to as Class );
+				_to = _route.router.instances.get( _to as Class );
 			
 			return true;
 		}

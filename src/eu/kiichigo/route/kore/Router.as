@@ -27,6 +27,22 @@ package eu.kiichigo.route.kore
 		/**
 		 * @private
 		 */
+		protected const _instances:IInstances = new Instances;
+		
+		/**
+		 * @copy		eu.kiichigo.route.kore.IRouter#factory
+		 */
+		public function get instances():IInstances
+		{
+			if( _instances.group != _group )
+				_instances.group = _group;
+			return _instances;
+		}
+	
+		
+		/**
+		 * @private
+		 */
 		protected var _group:Object = "global";
 		
 		/**
@@ -91,30 +107,6 @@ package eu.kiichigo.route.kore
 			_routes.fixed = true;
 		}
 		
-		protected const _factory:IFactory = new Factory;
-		
-		/**
-		 * @copy		eu.kiichigo.route.kore.IRouter#factory
-		 */
-		public function get factory():IFactory
-		{
-			if( _factory.group === null )
-				_factory.group = _group;
-			return _factory;
-		}
-		
-		/**
-		 * @copy		eu.kiichigo.route.kore.IRouter#build
-		 */
-		public function build( type:Class ):Object
-		{
-			if( Cache.group( _group ).has( type ) )
-				return Cache.group( _group ).retreive( type );
-			
-			var instance:Object = Cache.group( _group ).store( type, new type );
-			dispatchEvent( new BuildEvent( BuildEvent.BUILD, instance ) );
-			return instance;
-		}
 		
 		/**
 		 * @private

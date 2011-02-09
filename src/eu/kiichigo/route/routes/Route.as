@@ -36,7 +36,7 @@ package eu.kiichigo.route.routes
 		{
 			// If perceiver set as Class, and _router is passed, ask router to create and cache an instance of IPerceiver
 			if( generator::sensor != null && instance::sensor == null && _router != null )
-				instance::sensor = _router.factory.create( generator::sensor ) as ISensor;
+				instance::sensor = _router.instances.get( generator::sensor ) as ISensor;
 				
 			if( instance::sensor == null ||
 				_actions 		 == null ||

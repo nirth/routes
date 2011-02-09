@@ -26,7 +26,7 @@ package eu.kiichigo.route.kore
 		/**
 		 * Reference to an instance of <code>IFactory</code> for this <code>IRouter</code>.
 		 */
-		function get factory():IFactory;
+		function get instances():IInstances;
 		
 		
 		/**
