@@ -19,7 +19,6 @@ package eu.kiichigo.route.actions
 		override protected function process( from:Object, fromField:Object,
 											 to:Object, toField:Object ):void
 		{
-			log( "Binding {0}.{1} to {2}.{3}", from, fromField, to, toField );
 			BindingUtils.bindProperty( to, toField as String, from, fromField );
 		}
 	}

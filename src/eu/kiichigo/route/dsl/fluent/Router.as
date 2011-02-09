@@ -1,4 +1,4 @@
-package eu.kiichigo.route.interfaces.fluent
+package eu.kiichigo.route.dsl.fluent
 {
 	import eu.kiichigo.route.kore.Action;
 	import eu.kiichigo.route.kore.IAction;
@@ -51,8 +51,10 @@ package eu.kiichigo.route.interfaces.fluent
 		/**
 		 * @copy		eu.kiichigo.route.interfaces.flow.IRouter#route
 		 */
-		public function route( route:Object, properties:Object ):IRouter
+		public function route( route:Object, properties:Object = null ):IRouter
 		{
+			end;
+			
 			var r:IRoute = add( create( route, properties ) as IRoute );
 			
 			level( r );
@@ -65,7 +67,7 @@ package eu.kiichigo.route.interfaces.fluent
 		/**
 		 * @copy		eu.kiichigo.route.interfaces.flow.IRouter#pattern
 		 */
-		public function pattern( pattern:Object, properties:Object ):IRouter
+		public function pattern( pattern:Object, properties:Object = null):IRouter
 		{
 			var p:IPattern = create( pattern, properties ) as IPattern;
 			
@@ -79,7 +81,7 @@ package eu.kiichigo.route.interfaces.fluent
 		/**
 		 * @copy		eu.kiichigo.route.interfaces.flow.IRouter#action
 		 */
-		public function action( action:Object, properties:Object ):IRouter
+		public function action( action:Object, properties:Object = null ):IRouter
 		{
 			var a:IAction = ( current as IRoute ).add( create( action, properties ) as IAction );
 			

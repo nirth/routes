@@ -19,5 +19,7 @@
 	<component class="eu.kiichigo.route.actions.Apply" />
 	<component class="eu.kiichigo.route.actions.Bind" />
 	<component class="eu.kiichigo.route.actions.Copy" />
+	<component class="eu.kiichigo.route.actions.Run" />
+	<component class="eu.kiichigo.route.actions.Log" />
 	
 </componentPackage>
