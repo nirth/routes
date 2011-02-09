@@ -38,7 +38,9 @@ package eu.kiichigo.route.kore
 		 */
 		public function add( action:IAction ):IAction
 		{
+			log( "add before:", _list );
 			eu.kiichigo.route.utils.add( _list, process )( action, false );
+			log( "add after:", _list );
 			commit();
 			return action;
 		}
@@ -71,6 +73,8 @@ package eu.kiichigo.route.kore
 			if( _route != null && _list.length > 0 )
 				for( var i:uint = 0; i < _list.length; i ++ )
 					_list[i].route = _route;
+			
+			log( "commit", _list.length, _list );
 		}
 	}
 }

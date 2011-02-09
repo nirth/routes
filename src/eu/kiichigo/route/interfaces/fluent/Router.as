@@ -55,7 +55,7 @@ package eu.kiichigo.route.interfaces.fluent
 		{
 			var r:IRoute = add( create( route, properties ) as IRoute );
 			
-			current = level( r );
+			level( r );
 			
 			log( "added route:{0}", r );
 			return this;
@@ -70,7 +70,7 @@ package eu.kiichigo.route.interfaces.fluent
 			var p:IPattern = create( pattern, properties ) as IPattern;
 			
 			if( p is IPatterns )
-				current = level( p );
+				level( p );
 			
 			return this;
 		}
@@ -84,7 +84,7 @@ package eu.kiichigo.route.interfaces.fluent
 			var a:IAction = ( current as IRoute ).add( create( action, properties ) as IAction );
 			
 			if( a is IActions )
-				current = level( a );
+				level( a );
 			
 			return this;
 		}
@@ -95,7 +95,12 @@ package eu.kiichigo.route.interfaces.fluent
 		 */
 		public function get end():IRouter
 		{
-			current = boxes.pop();
+			boxes.pop();
+			
+			if( boxes.length )
+				current = boxes[boxes.length - 1];
+			else
+				current = null;
 			
 			return this;
 		}
@@ -111,6 +116,7 @@ package eu.kiichigo.route.interfaces.fluent
 		protected function level( object:Object ):Object
 		{
 			boxes.push( object );
+			current = object;
 			return object;
 		}
 		

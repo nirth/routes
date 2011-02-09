@@ -2,7 +2,7 @@ package eu.kiichigo.route.routes
 {
 	import eu.kiichigo.route.kore.IAction;
 	import eu.kiichigo.route.kore.IRouter;
-	import eu.kiichigo.route.sensor.ISensor;
+	import eu.kiichigo.route.sensors.ISensor;
 
 	public interface IRoute
 	{

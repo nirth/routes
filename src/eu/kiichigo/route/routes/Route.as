@@ -6,7 +6,7 @@ package eu.kiichigo.route.routes
 	import eu.kiichigo.route.kore.IRouter;
 	import eu.kiichigo.route.pattern.IPattern;
 	import eu.kiichigo.route.routes.IRoute;
-	import eu.kiichigo.route.sensor.ISensor;
+	import eu.kiichigo.route.sensors.ISensor;
 	import eu.kiichigo.route.utils.Cache;
 	import eu.kiichigo.route.utils.ICommitable;
 	import eu.kiichigo.route.utils.add;

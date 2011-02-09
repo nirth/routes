@@ -2,7 +2,7 @@ package eu.kiichigo.route.routes
 {
 	import eu.kiichigo.route.pattern.Pattern;
 	import eu.kiichigo.route.pattern.match.type;
-	import eu.kiichigo.route.sensor.Injects;
+	import eu.kiichigo.route.sensors.Injects;
 	import eu.kiichigo.route.utils.log;
 	
 	public class Inject extends Route

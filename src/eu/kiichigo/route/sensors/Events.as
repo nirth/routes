@@ -1,4 +1,4 @@
-package eu.kiichigo.route.sensor
+package eu.kiichigo.route.sensors
 {
 	import eu.kiichigo.route.pattern.IPattern;
 	import eu.kiichigo.route.routes.IRoute;
@@ -28,7 +28,7 @@ package eu.kiichigo.route.sensor
 			if( route.pattern is IPattern )
 				proxy.addEventListener( ( route.pattern as IPattern ).retreive( "type" ) as String, handle );
 			
-			log( "processing route:{0}, total:{1}", route, routes.length  );
+			//log( "processing route:{0}, total:{1}", route, routes.length  );
 			
 			return route;
 		}

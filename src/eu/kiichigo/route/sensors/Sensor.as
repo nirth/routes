@@ -1,4 +1,4 @@
-package eu.kiichigo.route.sensor
+package eu.kiichigo.route.sensors
 {
 	import eu.kiichigo.route.kore.IRouter;
 	import eu.kiichigo.route.routes.IRoute;

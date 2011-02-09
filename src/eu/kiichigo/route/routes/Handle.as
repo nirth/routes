@@ -5,7 +5,7 @@ package eu.kiichigo.route.routes
 	import eu.kiichigo.route.pattern.Patterns;
 	import eu.kiichigo.route.pattern.match.type;
 	import eu.kiichigo.route.pattern.match.values;
-	import eu.kiichigo.route.sensor.Events;
+	import eu.kiichigo.route.sensors.Events;
 	import eu.kiichigo.route.utils.log;
 	
 	import flash.events.Event;
