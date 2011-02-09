@@ -3,10 +3,11 @@ package eu.kiichigo.route.utils
 {
 	public function add( to:Object, initializer:Function ):Function
 	{
-		return function( from:Object ):void
+		return function( from:Object, clear:Boolean = true ):void
 		{
-			while( to.length )
-				to.shift();
+			if( clear )
+				while( to.length )
+					to.shift();
 			
 			if( to.fixed )
 				to.fixed = false;

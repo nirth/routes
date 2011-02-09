@@ -92,6 +92,7 @@ package eu.kiichigo.route.actions
 		protected function evaluate( percept:Object ):Boolean
 		{
 			// If from and to are null, quit.
+			log( "route: {0}", _route );
 			if( _from === null || _to === null )
 				return false;
 			
@@ -139,6 +140,18 @@ package eu.kiichigo.route.actions
 		{
 			log( "processing from:{0}, fromField:{1}, " +
 				 "to:{2}, toField:{3}", from, fromField, to, toField );
+		}
+		
+		
+		/**
+		 * @inheritDoc
+		 */
+		override public function toString():String
+		{
+			var string:String = "[Properties from=" + from + " to=" + to;
+			for( var property:String in this )
+				string += " " + property + "=" + this[property].toString();
+			return string + "]";
 		}
 	}
 }

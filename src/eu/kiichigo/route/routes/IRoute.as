@@ -1,5 +1,6 @@
 package eu.kiichigo.route.routes
 {
+	import eu.kiichigo.route.kore.IAction;
 	import eu.kiichigo.route.kore.IRouter;
 	import eu.kiichigo.route.sensor.ISensor;
 
@@ -56,6 +57,21 @@ package eu.kiichigo.route.routes
 		function set pattern( value:Object ):void;
 		
 		
+		/**
+		 * 
+		 * @param action
+		 * @return 
+		 * 
+		 */
+		function add( action:IAction ):IAction;
+		
+		
+		/**
+		 * 
+		 * @param percept
+		 * @return 
+		 * 
+		 */
 		function perceive( percept:Object ):Object;
 	}
 }

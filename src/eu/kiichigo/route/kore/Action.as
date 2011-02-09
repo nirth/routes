@@ -101,5 +101,14 @@ package eu.kiichigo.route.kore
 		{
 			
 		}
+		
+		
+		/**
+		 * @inheritDoc
+		 */
+		public function toString():String
+		{
+			return "[Action route=" + _route + "]";
+		}
 	}
 }

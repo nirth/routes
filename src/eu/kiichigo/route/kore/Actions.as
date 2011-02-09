@@ -34,6 +34,16 @@ package eu.kiichigo.route.kore
 		
 		
 		/**
+		 * @copy		eu.kiichigo.route.kore.IActions#add
+		 */
+		public function add( action:IAction ):IAction
+		{
+			eu.kiichigo.route.utils.add( _list, process )( action, false );
+			commit();
+			return action;
+		}
+		
+		/**
 		 * @inheritDoc
 		 */
 		override protected function exec( percept:Object ):void
@@ -61,8 +71,6 @@ package eu.kiichigo.route.kore
 			if( _route != null && _list.length > 0 )
 				for( var i:uint = 0; i < _list.length; i ++ )
 					_list[i].route = _route;
-		//	if( _route != null && _list.length > 0 )
-		//		_list.
 		}
 	}
 }

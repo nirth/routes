@@ -11,4 +11,13 @@
 	<component class="eu.kiichigo.route.routes.Handle" />
 	<component class="eu.kiichigo.route.routes.Inject" />
 	
+	
+	<!--
+		Actions
+	-->
+	
+	<component class="eu.kiichigo.route.actions.Apply" />
+	<component class="eu.kiichigo.route.actions.Bind" />
+	<component class="eu.kiichigo.route.actions.Copy" />
+	
 </componentPackage>

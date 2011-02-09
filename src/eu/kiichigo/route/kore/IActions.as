@@ -10,5 +10,14 @@ package eu.kiichigo.route.kore
 		 * 
 		 */
 		function set list( value:Object ):void;
+		
+		
+		/**
+		 * 
+		 * @param action
+		 * @return 
+		 * 
+		 */
+		function add( action:IAction ):IAction;
 	}
 }

@@ -78,6 +78,7 @@ package eu.kiichigo.route.kore
 		 */
 		public function set routes( value:Vector.<IRoute> ):void
 		{
+			log( "routes:set", value );
 			clear();
 			eu.kiichigo.route.utils.add( _routes, initialize )( value );
 		}
