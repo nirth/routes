@@ -4,6 +4,8 @@ package eu.kiichigo.route.kore
 	import eu.kiichigo.utils.log;
 	import eu.kiichigo.utils.toString;
 	
+	import flash.utils.describeType;
+	
 	import spark.skins.spark.mediaClasses.fullScreen.FullScreenButtonSkin;
 
 	public class Action implements IAction, IGuarded
@@ -40,7 +42,8 @@ package eu.kiichigo.route.kore
 		/**
 		 * @private
 		 */
-		protected var _when:Object;
+		protected var _when:Object = null;
+		
 		/**
 		 * @copy		eu.kiichigo.route.kore.IGuard#predicate
 		 */
@@ -50,11 +53,10 @@ package eu.kiichigo.route.kore
 			return _when;
 		}
 		/**
-		 * 
+		 * @private
 		 */
 		public function set when( value:Object ):void
 		{
-			log( "when:set", value );
 			_when = value;
 		}
 		
@@ -64,7 +66,6 @@ package eu.kiichigo.route.kore
 		 */
 		public function run( percept:Object ):IAction
 		{
-			log( "check", _when, _when as Function ? _when.length : 0 );
 			if( check( percept ) )
 				exec( percept );
 			
@@ -80,14 +81,43 @@ package eu.kiichigo.route.kore
 		 */
 		protected function check( percept:Object = null ):Boolean
 		{
-			if( _when == null )
+			if( _when === null )
+				return true;
+			
+			var result:Boolean = true;
+			if( _when is Boolean || _when is Function )
+				result = testPredicate( _when, percept );
+			else if( _when is Array )
+				for( var i:uint = 0; i < _when.length; i ++ )
+					if( !testPredicate( _when[i], percept ) )
+						result = false;
+			
+			log( "check:", result );
+			return result;
+		}
+		
+		
+		/**
+		 * Auxilary function check predicate against percept.
+		 * 
+		 * @param	predicate	Single predicate, can be <code>Boolean</code> or <code>Function</code>.
+		 * @param	percept		Current <code>percept</code>.
+		 * 
+		 * @return				Boolean, 
+		 */
+		protected function testPredicate( predicate:Object, percept:Object ):Boolean
+		{
+			if( predicate == null )
 				var result:Boolean = true; // default is true
-			else if( _when is Boolean )
-				result = _when;
-			else if( _when is Function && _when.length == 0 )
-				result = _when.call();
-			else if( _when is Function && _when.length == 1 )
-				result = _when.call( null, percept );
+			else if( predicate is Boolean )
+				result = predicate;
+			else if( predicate is Function && _when.length == 0 )
+				result = predicate.call();
+			else if( predicate is Function && predicate.length == 1 )
+				result = predicate.call( null, percept );
+			
+			
+			log( "testPredicate", result );
 			
 			return result;
 		}

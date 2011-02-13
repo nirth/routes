@@ -107,9 +107,16 @@ package eu.kiichigo.route.dsl.fluent
 		 */
 		public function when( guard:Object ):IRouter
 		{
-			log( "when", guard, action, action is IGuarded );
 			if( action is IGuarded )
-				( action as IGuarded ).when = guard;
+			{
+				const guarded:IGuarded = action as IGuarded;
+				if( ( guarded.when as Array ) == null )
+					guarded.when = [guard];
+				else
+					guarded.when.push( guard );
+				
+				log( "when", guarded.when );
+			}
 				
 			return this;
 		}
