@@ -7,7 +7,7 @@ package eu.kiichigo.route.dsl.fluent
 	import eu.kiichigo.route.pattern.IPattern;
 	import eu.kiichigo.route.pattern.IPatterns;
 	import eu.kiichigo.route.routes.IRoute;
-	import eu.kiichigo.route.utils.apply;
+	import eu.kiichigo.utils.apply;
 	
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
@@ -15,16 +15,8 @@ package eu.kiichigo.route.dsl.fluent
 	
 	import mx.core.IFactory;
 	
-	import org.osmf.layout.AbsoluteLayoutFacet;
-	
 	public class Router extends eu.kiichigo.route.kore.Router implements IRouter
 	{
-		/**
-		 * @private
-		 * Logging
-		 */
-		protected static const log:Function = eu.kiichigo.route.utils.log( "flow.Router" );
-		
 		/**
 		 * @private
 		 * List of containers/boxes, which will get items added to them. Valid containers are: <code>IRoute</code>, <code>IActions</code> and <code>IPatterns</code>.
@@ -37,6 +29,13 @@ package eu.kiichigo.route.dsl.fluent
 		 * Temporary reference to current <code>IAction</code> holder. It can be instances of <code>IRoute</code> or <code>IActions</code>
 		 */
 		protected var current:Object = null;
+		
+		
+		/**
+		 * @private
+		 * Indicates current instance of <code>IAction</code>.
+		 */
+		protected var action:IAction = null;
 		
 		
 		/**
@@ -58,8 +57,7 @@ package eu.kiichigo.route.dsl.fluent
 			var r:IRoute = add( create( route, properties ) as IRoute );
 			
 			level( r );
-			
-			log( "added route:{0}", r );
+
 			return this;
 		}
 		
@@ -81,7 +79,7 @@ package eu.kiichigo.route.dsl.fluent
 		/**
 		 * @copy		eu.kiichigo.route.interfaces.flow.IRouter#action
 		 */
-		public function action( action:Object, properties:Object = null ):IRouter
+		public function run( action:Object, properties:Object = null ):IRouter
 		{
 			var a:IAction = ( current as IRoute ).add( create( action, properties ) as IAction );
 			

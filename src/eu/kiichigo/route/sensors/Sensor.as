@@ -58,7 +58,6 @@ package eu.kiichigo.route.sensors
 			if( route === null )
 				return null;
 			
-			
 			routes.fixed = false;
 			if( routes.indexOf( route ) == -1 )
 				routes.push( process( route ) );

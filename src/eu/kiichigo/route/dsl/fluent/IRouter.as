@@ -10,7 +10,7 @@ package eu.kiichigo.route.dsl.fluent
 		
 		function pattern( pattern:Object, properties:Object = null ):eu.kiichigo.route.dsl.fluent.IRouter;
 		
-		function action( action:Object, properties:Object = null ):eu.kiichigo.route.dsl.fluent.IRouter;
+		function run( action:Object, properties:Object = null ):eu.kiichigo.route.dsl.fluent.IRouter;
 		
 		function get end():eu.kiichigo.route.dsl.fluent.IRouter;
 	}

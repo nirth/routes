@@ -6,7 +6,7 @@ package eu.kiichigo.route.kore
 	import eu.kiichigo.route.utils.ICache;
 	import eu.kiichigo.route.utils.add;
 	import eu.kiichigo.route.utils.invalidate;
-	import eu.kiichigo.route.utils.log;
+	import eu.kiichigo.utils.log;
 	
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
@@ -21,7 +21,7 @@ package eu.kiichigo.route.kore
 		 * @private
 		 * Logging
 		 */
-		protected static const log:Function = eu.kiichigo.route.utils.log( Router );
+		protected static const log:Function = eu.kiichigo.utils.log( Router );
 		
 		
 		/**
@@ -78,7 +78,6 @@ package eu.kiichigo.route.kore
 		 */
 		public function set routes( value:Vector.<IRoute> ):void
 		{
-			log( "routes:set", value );
 			clear();
 			eu.kiichigo.route.utils.add( _routes, initialize )( value );
 		}
@@ -115,7 +114,6 @@ package eu.kiichigo.route.kore
 		 */
 		protected function initialize( route:IRoute ):IRoute
 		{
-			log( "initializing {0}", route );
 			route.router = this;
 			
 			return route;

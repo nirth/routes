@@ -1,6 +1,6 @@
 package eu.kiichigo.route.actions
 {
-	import eu.kiichigo.route.utils.log;
+	import eu.kiichigo.utils.log;
 	
 	import mx.binding.utils.BindingUtils;
 
@@ -10,7 +10,7 @@ package eu.kiichigo.route.actions
 		 * @private
 		 * Logging
 		 */
-		protected static const log:Function = eu.kiichigo.route.utils.log( Bind );
+		protected static const log:Function = eu.kiichigo.utils.log( Bind );
 		
 		
 		/**

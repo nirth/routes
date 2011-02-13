@@ -4,7 +4,7 @@ package eu.kiichigo.route.sensors
 	import eu.kiichigo.route.kore.IRouter;
 	import eu.kiichigo.route.utils.EventProxy;
 	import eu.kiichigo.route.utils.IEventProxy;
-	import eu.kiichigo.route.utils.log;
+	import eu.kiichigo.utils.log;
 	
 	import flash.events.Event;
 	
@@ -16,7 +16,7 @@ package eu.kiichigo.route.sensors
 		 * @private
 		 * Logging
 		 */
-		protected static const log:Function = eu.kiichigo.route.utils.log( Injects );
+		protected static const log:Function = eu.kiichigo.utils.log( Injects );
 		
 		/**
 		 * @private

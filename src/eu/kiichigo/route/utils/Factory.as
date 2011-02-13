@@ -1,5 +1,7 @@
 package eu.kiichigo.route.utils
 {
+	import eu.kiichigo.utils.apply;
+
 	public class Factory implements IFactory
 	{
 		/**

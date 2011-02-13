@@ -4,7 +4,7 @@ package eu.kiichigo.route.actions
 	import eu.kiichigo.route.routes.IRoute;
 	import eu.kiichigo.route.utils.Hash;
 	import eu.kiichigo.route.utils.IHash;
-	import eu.kiichigo.route.utils.log;
+	import eu.kiichigo.utils.log;
 	
 	public class Properties extends Action implements IProperties
 	{
@@ -12,7 +12,7 @@ package eu.kiichigo.route.actions
 		 * @private
 		 * Logging
 		 */
-		protected static const log:Function = eu.kiichigo.route.utils.log( Properties );
+		protected static const log:Function = eu.kiichigo.utils.log( Properties );
 		
 		
 		/**

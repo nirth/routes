@@ -2,7 +2,7 @@ package eu.kiichigo.route.kore
 {
 	import eu.kiichigo.route.utils.Cache;
 	import eu.kiichigo.route.utils.ICache;
-	import eu.kiichigo.route.utils.log;
+	import eu.kiichigo.utils.log;
 	
 	import flash.utils.getDefinitionByName;
 
@@ -12,7 +12,7 @@ package eu.kiichigo.route.kore
 		 * @private
 		 * Logging
 		 */
-		protected static const log:Function = eu.kiichigo.route.utils.log( Instances );
+		protected static const log:Function = eu.kiichigo.utils.log( Instances );
 		
 		/**
 		 * @private

@@ -6,7 +6,7 @@ package eu.kiichigo.route.routes
 	import eu.kiichigo.route.pattern.match.type;
 	import eu.kiichigo.route.pattern.match.values;
 	import eu.kiichigo.route.sensors.Events;
-	import eu.kiichigo.route.utils.log;
+	import eu.kiichigo.utils.log;
 	
 	import flash.events.Event;
 
@@ -16,7 +16,7 @@ package eu.kiichigo.route.routes
 		 * @private
 		 * Logging
 		 */
-		protected static const log:Function = eu.kiichigo.route.utils.log( Handle );
+		protected static const log:Function = eu.kiichigo.utils.log( Handle );
 		
 		/**
 		 * @private
@@ -30,7 +30,7 @@ package eu.kiichigo.route.routes
 			sensor = Events;
 			
 			var typePattern:Pattern = new Pattern;
-			typePattern.matcher = type;
+				typePattern.matcher = type;
 				typePattern.store( "type", Event );
 				
 			eventPattern.matcher = values;

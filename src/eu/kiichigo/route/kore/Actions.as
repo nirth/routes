@@ -27,14 +27,7 @@ package eu.kiichigo.route.kore
 	import eu.kiichigo.route.utils.add;
 
 	public class Actions extends Action implements IActions
-	{
-		/**
-		 * @private
-		 * Logging
-		 */
-		protected static const log:Function = eu.kiichigo.route.utils.log( Actions );
-		
-		
+	{	
 		/**
 		 * @private
 		 */
@@ -97,15 +90,13 @@ package eu.kiichigo.route.kore
 			if( _route != null && _list.length > 0 )
 				for( var i:uint = 0; i < _list.length; i ++ )
 					_list[i].route = _route;
-			
-			log( "commit", _list.length, _list );
 		}
 	}
 }
 
 
 import eu.kiichigo.route.kore.Action;
-import eu.kiichigo.route.utils.log;
+import eu.kiichigo.utils.log;
 
 /**
  * @private

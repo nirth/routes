@@ -1,8 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2009-2011 
-David "Nirth" Sergey ( nirth@kiichigo.eu, nirth.furzahad@gmail.com )
+Copyright (c) 2008 David Sergey, nirth@fouramgames.com, nirth.furzahad@gmail.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,23 +21,30 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package eu.kiichigo.route.utils
+
+package eu.kiichigo.utils.definition
 {
-	/**
-	 * Unsafe object initializer, this method will not catch errors for performance concerns.
-	 * 
-	 * @param to	Object that will be initialized, if <code>Class</code> is passed, object will be automatically created.
-	 * @param from	Object - holder of the properties that will be applied onto <code>to</code> argument.
-	 * @return		<code>to</code> object with applied parameters.
-	 */
-	public function initialize( to:Object, from:Object ):Object
+	public class Arg
 	{
-		if( to is Class )
-			to = new to;
+		public function Arg( key:String = null, value:String = null)
+		{
+			super();
+			
+			_key = key;
+			_value = value;
+		}
 		
-		for( var property:String in from )
-			to[property] = from[property];
+		protected var _key:String;
+		public function get key():String
+		{
+			return _key;
+		}
 		
-		return to;
+		protected var _value:String;
+		public function get value():String
+		{
+			return _value;
+		}
+		
 	}
 }

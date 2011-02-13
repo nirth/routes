@@ -3,7 +3,7 @@ package eu.kiichigo.route.routes
 	import eu.kiichigo.route.pattern.Pattern;
 	import eu.kiichigo.route.pattern.match.type;
 	import eu.kiichigo.route.sensors.Injects;
-	import eu.kiichigo.route.utils.log;
+	import eu.kiichigo.utils.log;
 	
 	public class Inject extends Route
 	{
@@ -11,7 +11,7 @@ package eu.kiichigo.route.routes
 		 * @private
 		 * Logging
 		 */
-		protected static const log:Function = eu.kiichigo.route.utils.log( Inject );
+		protected static const log:Function = eu.kiichigo.utils.log( Inject );
 		
 		public function Inject()
 		{

@@ -18,13 +18,7 @@ package eu.kiichigo.route.routes
 	[DefaultProperty("actions")]
 	
 	public class Route implements IRoute
-	{
-		/**
-		 * @private
-		 * Logging
-		 */
-		protected static const log:Function = eu.kiichigo.route.utils.log( Route );
-		
+	{	
 		protected namespace generator;
 		protected namespace instance;
 		
@@ -99,7 +93,6 @@ package eu.kiichigo.route.routes
 		 */
 		public function set actions( value:Object ):void
 		{
-			log( "actions:set", value );
 			if( value is IActions )
 				_actions = value as IActions;
 			else

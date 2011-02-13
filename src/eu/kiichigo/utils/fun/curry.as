@@ -1,5 +1,5 @@
 
-package eu.kiichigo.route.utils
+package eu.kiichigo.utils.fun
 {
 	public function curry( closure:Function, ...rest ):Function
 	{

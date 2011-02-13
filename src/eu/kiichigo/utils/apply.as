@@ -1,5 +1,5 @@
 
-package eu.kiichigo.route.utils
+package eu.kiichigo.utils
 {
 	public function apply( from:Object, to:Object, check:Boolean = true ):Object
 	{

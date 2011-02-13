@@ -1,8 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2009-2011 
-David "Nirth" Sergey ( nirth@kiichigo.eu, nirth.furzahad@gmail.com )
+Copyright (c) 2008 David Sergey, nirth@fouramgames.com, nirth.furzahad@gmail.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,55 +21,39 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package eu.kiichigo.route.utils
+package eu.kiichigo.utils.definition
 {
-	import flash.display.Sprite;
-	import flash.events.Event;
-	import flash.events.IEventDispatcher;
-
-	public function nextFrame( closure:Function ):Function
-	{	
-		var beacon:Beacon = new Beacon;
-		
-		return function():void
-		{	
-			beacon.add( closure );
+	import __AS3__.vec.Vector;
+	
+	public class Method extends Member
+	{
+		public function Method(name:String,
+							   declaredBy:Class,
+							   returnType:Class,
+							   parameters:Vector.<Parameter>,
+							   metadata:Vector.<Metadata>)
+		{
+			super(name, declaredBy, returnType, metadata);
+			
+			_parameters = parameters;
 		}
-	}
-}
-import eu.kiichigo.utils.log;
-
-import flash.display.Sprite;
-import flash.events.Event;
-
-/**
- * @private
- */
-class Beacon extends Sprite
-{
-	/**
-	 * @private
-	 */
-	protected const closures:Vector.<Function> = new Vector.<Function>;
-	/**
-	 * @private
-	 */
-	public function add( closure:Function ):void
-	{
-		if( closures.indexOf( closure ) >= 0 )
-			return;
 		
-		closures.push( closure );
-		addEventListener( Event.ENTER_FRAME, handle );
-	}
-	/**
-	 * @private
-	 */
-	protected function handle( event:Event ):void
-	{
-		removeEventListener( Event.ENTER_FRAME, handle );
+		public function get returnType():Class
+		{
+			return _type;
+		}
 		
-		for( var i:uint = 0; i < closures.length; i ++ )
-			closures.shift().apply();
+		protected var _parameters:Vector.<Parameter>;
+		public function get parameters():Vector.<Parameter>
+		{
+			return _parameters;
+		}
+		
+		public function get length():uint
+		{
+			if( _parameters )
+				return _parameters.length;
+			return 0;
+		}
 	}
 }

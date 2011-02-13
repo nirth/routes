@@ -1,13 +1,11 @@
 package eu.kiichigo.route.utils
 {	
+	import eu.kiichigo.utils.apply;
+	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	import flash.utils.getDefinitionByName;
-	
-	import mx.core.FlexGlobals;
-	
-	import spark.components.Application;
 	
 	public class EventProxy implements IEventDispatcher,
 									   IEventProxy
@@ -26,12 +24,7 @@ package eu.kiichigo.route.utils
 		 * In this mode <code>IEventProxy</code> will attempt to listen events on <code>stage</code> of the display list.
 		 */
 		public static const STAGE:String = "stage";
-		
-		/**
-		 * @private
-		 * Logging
-		 */
-		protected static const log:Function = eu.kiichigo.route.utils.log( EventProxy );
+
 		
 		/**
 		 * Actual Dispatcher.
@@ -65,12 +58,12 @@ package eu.kiichigo.route.utils
 			if( dispatcher )
 				dispatcher.addEventListener( type, listener, useCapture, priority, useWeakReference );
 			
-			handlers.push( initialize( new Handler,
-									   { type: type,
-										 listener: listener,
-										 useCapture: useCapture,
-										 priority: priority,
-										 useWeakReference: useWeakReference } ) );
+			handlers.push( apply( { type: type,
+									listener: listener,
+									useCapture: useCapture,
+									priority: priority,
+									useWeakReference: useWeakReference },
+								  new Handler ) );
 			
 			//log( "addEventListener", type, useCapture, priority, useWeakReference );
 		}
@@ -86,8 +79,6 @@ package eu.kiichigo.route.utils
 			handlers.splice( handlers.indexOf( handlers.filter(
 				function( item:Handler, index:int, vector:Vector.<Handler> ):Boolean
 				{ return item.type == type && item.listener == listener && item.useCapture == useCapture } ) ), 1 );
-			
-			log( "removeEventListener:", handlers );
 		}
 		/**
 		 * @inheritDoc

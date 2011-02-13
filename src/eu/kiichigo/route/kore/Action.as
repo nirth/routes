@@ -1,23 +1,25 @@
 package eu.kiichigo.route.kore
 {
 	import eu.kiichigo.route.routes.IRoute;
-	import eu.kiichigo.route.utils.log;
+	import eu.kiichigo.utils.log;
+	import eu.kiichigo.utils.toString;
 	
 	import spark.skins.spark.mediaClasses.fullScreen.FullScreenButtonSkin;
 
-	public class Action implements IAction, IGuard
+	public class Action implements IAction, IGuarded
 	{
 		/**
 		 * @private
 		 * Logging
 		 */
-		protected static const log:Function = eu.kiichigo.route.utils.log( Action );
+		protected static const log:Function = eu.kiichigo.utils.log( Action );
 		
 		
 		/**
 		 * @private
 		 */
 		protected var _route:IRoute;
+		
 		/**
 		 * @copy		eu.kiichigo.route.kore.IAction#route
 		 */
@@ -38,21 +40,23 @@ package eu.kiichigo.route.kore
 		/**
 		 * @private
 		 */
-		protected var _predicate:Object;
+		protected var _when:Object;
 		/**
 		 * @copy		eu.kiichigo.route.kore.IGuard#predicate
 		 */
-		public function get predicate():Object
+		
+		public function get when():Object
 		{
-			return _predicate;
+			return _when;
 		}
 		/**
 		 * 
 		 */
-		public function set predicate(value:Object):void
+		public function set when( value:Object ):void
 		{
-			_predicate = value;
+			_when = value;
 		}
+		
 		
 		/**
 		 * eu.kiichigo.route.kore.IAction#run
@@ -65,6 +69,7 @@ package eu.kiichigo.route.kore
 			return this;
 		}
 		
+		
 		/**
 		 * Auxilary function, checks whether instance of <code>IAction</code> will be executed or not.
 		 *  
@@ -73,17 +78,18 @@ package eu.kiichigo.route.kore
 		 */
 		protected function check( percept:Object = null ):Boolean
 		{
-			if( _predicate == null )
+			if( _when == null )
 				var result:Boolean = true; // default is true
-			else if( _predicate is Boolean )
-				result = _predicate;
-			else if( _predicate is Function && _predicate.length == 0 )
-				result = _predicate.call();
-			else if( _predicate is Function && _predicate.length == 1 )
-				result = _predicate.call( null, percept );
+			else if( _when is Boolean )
+				result = _when;
+			else if( _when is Function && _when.length == 0 )
+				result = _when.call();
+			else if( _when is Function && _when.length == 1 )
+				result = _when.call( null, percept );
 			
 			return result;
 		}
+		
 		
 		/**
 		 * Override this method in subclassed, in order to implement functionality of a <code>Action</code>
@@ -92,6 +98,7 @@ package eu.kiichigo.route.kore
 		{
 			
 		}
+		
 		
 		/**
 		 *  
@@ -108,7 +115,7 @@ package eu.kiichigo.route.kore
 		 */
 		public function toString():String
 		{
-			return "[Action route=" + _route + "]";
+			return eu.kiichigo.utils.toString( this, "route" );
 		}
 	}
 }

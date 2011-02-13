@@ -8,13 +8,7 @@ package eu.kiichigo.route.sensors
 	import flash.events.Event;
 
 	public class Events extends Sensor
-	{
-		/**
-		 * @private
-		 * Logging
-		 */
-		protected static const log:Function = eu.kiichigo.route.utils.log( Events );
-		
+	{	
 		/**
 		 * @private
 		 */

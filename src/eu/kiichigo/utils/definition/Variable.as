@@ -1,8 +1,7 @@
 /*
 The MIT License
 
-Copyright (c) 2009-2011 
-David "Nirth" Sergey ( nirth@kiichigo.eu, nirth.furzahad@gmail.com )
+Copyright (c) 2008 David Sergey, nirth@fouramgames.com, nirth.furzahad@gmail.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,55 +21,19 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package eu.kiichigo.route.utils
+package eu.kiichigo.utils.definition
 {
-	import flash.display.Sprite;
-	import flash.events.Event;
-	import flash.events.IEventDispatcher;
-
-	public function nextFrame( closure:Function ):Function
-	{	
-		var beacon:Beacon = new Beacon;
-		
-		return function():void
-		{	
-			beacon.add( closure );
+	public class Variable extends Member
+						  implements IMember,
+						  			 IProperty
+	{
+		public function Variable( name:String, type:Class, metadata:Vector.<Metadata>)
+		{
+			super( name, null, type, metadata );
+			
+			_name = name;
+			_type = type;
+			
 		}
-	}
-}
-import eu.kiichigo.utils.log;
-
-import flash.display.Sprite;
-import flash.events.Event;
-
-/**
- * @private
- */
-class Beacon extends Sprite
-{
-	/**
-	 * @private
-	 */
-	protected const closures:Vector.<Function> = new Vector.<Function>;
-	/**
-	 * @private
-	 */
-	public function add( closure:Function ):void
-	{
-		if( closures.indexOf( closure ) >= 0 )
-			return;
-		
-		closures.push( closure );
-		addEventListener( Event.ENTER_FRAME, handle );
-	}
-	/**
-	 * @private
-	 */
-	protected function handle( event:Event ):void
-	{
-		removeEventListener( Event.ENTER_FRAME, handle );
-		
-		for( var i:uint = 0; i < closures.length; i ++ )
-			closures.shift().apply();
 	}
 }

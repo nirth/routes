@@ -1,17 +1,17 @@
 package eu.kiichigo.route.kore
 {
-	public interface IGuard
+	public interface IGuarded
 	{
 		/**
 		 * Allowed types are: <code>Boolean</code> or <code>Function</code> closure that returns a <code>Boolean</code>.
-		 * Indicates whether an <code>IGuard</code> instance will be executed or not.
+		 * Indicates whether an <code>IGuarded</code> instance will be executed or not.
 		 * 
 		 * Default value is <code>true</code>
 		 */
-		function get predicate():Object;
+		function get when():Object;
 		/**
 		 * @private
 		 */
-		function set predicate( value:Object ):void;
+		function set when( value:Object ):void;
 	}
 }

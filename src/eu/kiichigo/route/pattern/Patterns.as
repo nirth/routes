@@ -1,6 +1,6 @@
 package eu.kiichigo.route.pattern
 {
-	import eu.kiichigo.route.utils.log;
+	import eu.kiichigo.utils.log;
 
 	public class Patterns extends Pattern implements IPatterns
 	{
@@ -8,7 +8,7 @@ package eu.kiichigo.route.pattern
 		 * @private
 		 * Logging
 		 */
-		protected static const log:Function = eu.kiichigo.route.utils.log( Patterns );
+		protected static const log:Function = eu.kiichigo.utils.log( Patterns );
 		
 		public static const LOGIC_GATE_AND:String = "and";
 		public static const LOGIC_GATE_OR:String = "or";

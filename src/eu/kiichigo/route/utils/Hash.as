@@ -26,17 +26,9 @@ package eu.kiichigo.route.utils
 {
 	import flash.utils.Dictionary;
 	import flash.utils.getQualifiedClassName;
-	
-	import org.osmf.layout.AbsoluteLayoutFacet;
 
 	public class Hash implements IHash
-	{
-		/**
-		 * @private
-		 * Logging
-		 */
-		protected static const log:Function = eu.kiichigo.route.utils.log( Hash );
-		
+	{	
 		/**
 		 * An instance of a <code>Dictionary, that stores data.
 		 */
@@ -109,6 +101,7 @@ package eu.kiichigo.route.utils
 			return this;
 		}
 		
+		
 		/**
 		 * @copy		eu.kiichigo.routes.utils.IHash#clear
 		 */
@@ -126,7 +119,7 @@ package eu.kiichigo.route.utils
 		{
 			var string:String = "[" + getQualifiedClassName( this ).split( "::" )[1] + " ";
 			for( var property:String in data )
-				string += property + "=" + data[property], log( string, data[property] );
+				string += property + "=" + data[property];
 			return string + "]";
 		}
 	}

@@ -1,14 +1,14 @@
 package eu.kiichigo.route.actions
 {
 	import eu.kiichigo.route.kore.Action;
-	import eu.kiichigo.route.utils.log;
+	import eu.kiichigo.utils.log;
 	
 	public class Log extends Action
 	{
 		/**
 		 * @private
 		 */
-		protected var log:Function = eu.kiichigo.route.utils.log( "Log" );
+		protected var log:Function = eu.kiichigo.utils.log( "Log" );
 		
 		/**
 		 * @private
@@ -29,7 +29,7 @@ package eu.kiichigo.route.actions
 			if( _filter === value )
 				return;
 			_filter = value;
-			log = eu.kiichigo.route.utils.log( value );
+			log = eu.kiichigo.utils.log( value );
 		}
 		
 		/**
