@@ -3,11 +3,13 @@ package eu.kiichigo.route.dsl.fluent
 	import eu.kiichigo.route.kore.Action;
 	import eu.kiichigo.route.kore.IAction;
 	import eu.kiichigo.route.kore.IActions;
+	import eu.kiichigo.route.kore.IGuarded;
 	import eu.kiichigo.route.kore.IInstances;
 	import eu.kiichigo.route.pattern.IPattern;
 	import eu.kiichigo.route.pattern.IPatterns;
 	import eu.kiichigo.route.routes.IRoute;
 	import eu.kiichigo.utils.apply;
+	import eu.kiichigo.utils.log;
 	
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
@@ -17,6 +19,13 @@ package eu.kiichigo.route.dsl.fluent
 	
 	public class Router extends eu.kiichigo.route.kore.Router implements IRouter
 	{
+		/**
+		 * @private
+		 * Logging
+		 */
+		protected static const log:Function = eu.kiichigo.utils.log( Router );
+		
+		
 		/**
 		 * @private
 		 * List of containers/boxes, which will get items added to them. Valid containers are: <code>IRoute</code>, <code>IActions</code> and <code>IPatterns</code>.
@@ -39,7 +48,7 @@ package eu.kiichigo.route.dsl.fluent
 		
 		
 		/**
-		 * @copy		eu.kiichigo.route.interfaces.flow.IRouter#settings
+		 * @copy		eu.kiichigo.route.dsl.fluent.IRouter#settings
 		 */
 		public function settings( properties:Object ):IRouter
 		{
@@ -48,7 +57,7 @@ package eu.kiichigo.route.dsl.fluent
 		
 		
 		/**
-		 * @copy		eu.kiichigo.route.interfaces.flow.IRouter#route
+		 * @copy		eu.kiichigo.route.dsl.fluent.IRouter#route
 		 */
 		public function route( route:Object, properties:Object = null ):IRouter
 		{
@@ -63,7 +72,7 @@ package eu.kiichigo.route.dsl.fluent
 		
 		
 		/**
-		 * @copy		eu.kiichigo.route.interfaces.flow.IRouter#pattern
+		 * @copy		eu.kiichigo.route.dsl.fluent.IRouter#pattern
 		 */
 		public function pattern( pattern:Object, properties:Object = null):IRouter
 		{
@@ -77,7 +86,7 @@ package eu.kiichigo.route.dsl.fluent
 		
 		
 		/**
-		 * @copy		eu.kiichigo.route.interfaces.flow.IRouter#action
+		 * @copy		eu.kiichigo.route.dsl.fluent.IRouter#action
 		 */
 		public function run( action:Object, properties:Object = null ):IRouter
 		{
@@ -86,12 +95,28 @@ package eu.kiichigo.route.dsl.fluent
 			if( a is IActions )
 				level( a );
 			
+			log( "run", a, a is IGuarded );
+			this.action = a;
+			
 			return this;
 		}
 		
 		
 		/**
-		 * @copy		eu.kiichigo.route.interfaces.flow.IRouter#end
+		 * @copy		eu.kiichigo.route.dsl.fluent.IRouter#when
+		 */
+		public function when( guard:Object ):IRouter
+		{
+			log( "when", guard, action, action is IGuarded );
+			if( action is IGuarded )
+				( action as IGuarded ).when = guard;
+				
+			return this;
+		}
+		
+		
+		/**
+		 * @copy		eu.kiichigo.route.dsl.fluent.IRouter#end
 		 */
 		public function get end():IRouter
 		{

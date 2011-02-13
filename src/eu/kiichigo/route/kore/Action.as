@@ -54,6 +54,7 @@ package eu.kiichigo.route.kore
 		 */
 		public function set when( value:Object ):void
 		{
+			log( "when:set", value );
 			_when = value;
 		}
 		
@@ -63,6 +64,7 @@ package eu.kiichigo.route.kore
 		 */
 		public function run( percept:Object ):IAction
 		{
+			log( "check", _when, _when as Function ? _when.length : 0 );
 			if( check( percept ) )
 				exec( percept );
 			

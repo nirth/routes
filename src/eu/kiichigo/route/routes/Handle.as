@@ -18,11 +18,17 @@ package eu.kiichigo.route.routes
 		 */
 		protected static const log:Function = eu.kiichigo.utils.log( Handle );
 		
+		
 		/**
 		 * @private
 		 */
 		protected const eventPattern:IPattern = new Pattern;
 		
+		
+		/**
+		 * Constructor 
+		 * 
+		 */
 		public function Handle()
 		{
 			super();
@@ -38,13 +44,20 @@ package eu.kiichigo.route.routes
 			pattern = new Patterns( typePattern, eventPattern );
 		}
 		
+		
+		/**
+		 * Indicates event name, that current instance of <code>Handle</code> should listen to.
+		 */
 		public function get event():String
 		{
 			return eventPattern.retreive( "type" ) as String;
 		}
-		
+		/**
+		 * @private
+		 */
 		public function set event( value:String ):void
 		{
+			log( "event:set", value );
 			eventPattern.store( "type", value );
 		}
 	}

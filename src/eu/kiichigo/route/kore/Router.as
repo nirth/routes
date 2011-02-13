@@ -16,7 +16,8 @@ package eu.kiichigo.route.kore
 	[Exclude(name="deactivate",kind="event")]
 	
 	[DefaultProperty("routes")]
-	public class Router extends EventDispatcher implements IRouter
+	public class Router extends EventDispatcher
+						implements IRouter
 	{
 		/**
 		 * @private
