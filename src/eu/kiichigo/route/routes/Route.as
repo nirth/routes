@@ -168,6 +168,8 @@ package eu.kiichigo.route.routes
 				!( pattern is IPattern ? pattern.match( percept ) : pattern( percept ) ) )
 				return null;
 			
+			_router.percept = percept;
+			
 			_actions.run( percept );
 			
 			return percept;

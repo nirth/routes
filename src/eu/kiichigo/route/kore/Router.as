@@ -1,6 +1,7 @@
 package eu.kiichigo.route.kore
 {
 	import eu.kiichigo.route.events.BuildEvent;
+	import eu.kiichigo.route.events.RouterEvent;
 	import eu.kiichigo.route.routes.IRoute;
 	import eu.kiichigo.route.utils.Cache;
 	import eu.kiichigo.route.utils.ICache;
@@ -82,6 +83,30 @@ package eu.kiichigo.route.kore
 			eu.kiichigo.route.utils.add( _routes, initialize )( value );
 		}
 		
+		
+		/**
+		 * @private
+		 */
+		protected var _percept:Object;
+		
+		[Bindable(event="perceptChanged")]
+		/**
+		 * @copy		eu.kiichigo.route.kore.IRouter#percept
+		 */
+		public function get percept():Object
+		{
+			return _percept;
+		}
+		/**
+		 * @private
+		 */
+		public function set percept( value:Object ):void
+		{
+			if( _percept === value )
+				return;
+			_percept = value;
+			dispatchEvent( new RouterEvent( RouterEvent.PERCEPT_CHANGED ) );
+		}
 		
 		/**
 		 * @copy		eu.kiichigo.route.kore.IRouter#add

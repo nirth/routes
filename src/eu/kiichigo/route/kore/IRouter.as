@@ -23,6 +23,16 @@ package eu.kiichigo.route.kore
 		 */
 		function set routes( value:Vector.<IRoute> ):void;
 		
+		
+		/**
+		 * Indicates current <code>percept</code> that's processed by <code>IRouter</code>
+		 */
+		function get percept():Object;
+		/**
+		 * @private
+		 */
+		function set percept( value:Object ):void;
+		
 		/**
 		 * Reference to an instance of <code>IFactory</code> for this <code>IRouter</code>.
 		 */
