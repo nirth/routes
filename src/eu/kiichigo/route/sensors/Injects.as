@@ -18,14 +18,18 @@ package eu.kiichigo.route.sensors
 		 */
 		protected static const log:Function = eu.kiichigo.utils.log( Injects );
 		
+		
 		/**
 		 * @private
 		 */
 		protected const application:IEventProxy = new EventProxy( EventProxy.APPLICATION );
+		
+		
 		/**
 		 * @priavte
 		 */
 		protected const parent:IEventProxy = new EventProxy;
+		
 		
 		/**
 		 * @iheritDoc
@@ -36,6 +40,7 @@ package eu.kiichigo.route.sensors
 			parent.addEventListener( BuildEvent.BUILD, handle );
 		}
 		
+		
 		/**
 		 * @inheritDoc
 		 */
@@ -45,9 +50,13 @@ package eu.kiichigo.route.sensors
 			parent.mode = value;
 		}
 		
+		
+		/**
+		 * @private
+		 */
 		protected function handle( event:Event ):void
 		{	
-			send( event is BuildEvent ? ( event as BuildEvent ).instance : event.target );
+			pass( event is BuildEvent ? ( event as BuildEvent ).instance : event.target );
 		}
 	}
 }

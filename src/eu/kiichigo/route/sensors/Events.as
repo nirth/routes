@@ -8,14 +8,13 @@ package eu.kiichigo.route.sensors
 	
 	import flash.events.Event;
 
+	/**
+	 * 
+	 * @author nirth
+	 * 
+	 */
 	public class Events extends Sensor
 	{
-		/**
-		 * @private
-		 * Logging
-		 */
-		protected static const log:Function = eu.kiichigo.utils.log( Events );
-		
 		/**
 		 * @private
 		 */
@@ -29,8 +28,6 @@ package eu.kiichigo.route.sensors
 			if( route.pattern is IPattern )
 				proxy.addEventListener( ( route.pattern as IPattern ).retreive( "type" ) as String, handle );
 			
-			log( "processing route:{0}, total:{1}", route, routes.length  );
-			
 			return route;
 		}
 		
@@ -39,8 +36,7 @@ package eu.kiichigo.route.sensors
 		 */
 		protected function handle( event:Event ):void
 		{
-			log( "handle:", event );
-			send( event );
+			pass( event );
 		}
 	}
 }
