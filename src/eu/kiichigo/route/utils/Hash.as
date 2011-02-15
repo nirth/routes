@@ -24,6 +24,8 @@ THE SOFTWARE.
 */
 package eu.kiichigo.route.utils
 {
+	import eu.kiichigo.utils.log;
+	
 	import flash.utils.Dictionary;
 	import flash.utils.getQualifiedClassName;
 
@@ -72,7 +74,6 @@ package eu.kiichigo.route.utils
 			data[key] = value;
 			if( _keys.indexOf( key ) == -1 )
 				_keys.push( key );
-			
 			return value;
 		}
 		

@@ -59,6 +59,6 @@ package eu.kiichigo.route.sensors
 		 * 
 		 * @param	percept	A percept that will be passed down to instances of <code>IRoute</code>
 		 */
-		function pass( percept:Object ):
+		function pass( percept:Object ):void;
 	}
 }

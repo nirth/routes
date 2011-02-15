@@ -24,6 +24,11 @@ package eu.kiichigo.route.routes
 		 */
 		protected const eventPattern:IPattern = new Pattern;
 		
+		/**
+		 * @private
+		 */
+		protected const typePattern:IPattern = new Pattern;
+		
 		
 		/**
 		 * Constructor 
@@ -35,13 +40,13 @@ package eu.kiichigo.route.routes
 			
 			sensor = Events;
 			
-			var typePattern:Pattern = new Pattern;
-				typePattern.matcher = type;
-				typePattern.store( "type", Event );
+			typePattern.matcher = type;
 				
 			eventPattern.matcher = values;
 
 			pattern = new Patterns( typePattern, eventPattern );
+			
+			generator = Event;
 		}
 		
 		
@@ -59,6 +64,23 @@ package eu.kiichigo.route.routes
 		{
 			log( "event:set", value );
 			eventPattern.store( "type", value );
+		}
+		
+		
+		/**
+		 * Indicates type of Event, default value is <code>flash.events.Event</code>
+		 */
+		public function get generator():Class
+		{
+			return typePattern.retreive( "type" ) as Class
+		}
+		/**
+		 * @private
+		 */
+		public function set generator( value:Class ):void
+		{
+			log( "generator:set", value );
+			typePattern.store( "type", value );
 		}
 	}
 }
