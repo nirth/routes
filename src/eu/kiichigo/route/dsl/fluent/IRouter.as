@@ -12,7 +12,7 @@ package eu.kiichigo.route.dsl.fluent
 		
 		function run( action:Object, properties:Object = null ):eu.kiichigo.route.dsl.fluent.IRouter;
 		
-		function when( guard:Object ):eu.kiichigo.route.dsl.fluent.IRouter
+		function when( guard:Object, properties:Object = null ):eu.kiichigo.route.dsl.fluent.IRouter
 		
 		function get end():eu.kiichigo.route.dsl.fluent.IRouter;
 	}

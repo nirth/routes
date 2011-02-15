@@ -1,9 +1,10 @@
 package eu.kiichigo.route.dsl.fluent
 {
+	import eu.kiichigo.fun.curry;
+	import eu.kiichigo.route.guards.IGuarded;
 	import eu.kiichigo.route.kore.Action;
 	import eu.kiichigo.route.kore.IAction;
 	import eu.kiichigo.route.kore.IActions;
-	import eu.kiichigo.route.kore.IGuarded;
 	import eu.kiichigo.route.kore.IInstances;
 	import eu.kiichigo.route.pattern.IPattern;
 	import eu.kiichigo.route.pattern.IPatterns;
@@ -24,6 +25,15 @@ package eu.kiichigo.route.dsl.fluent
 		 * Logging
 		 */
 		protected static const log:Function = eu.kiichigo.utils.log( Router );
+		
+		
+		/**
+		 * @private 
+		 */
+		public static function setup( properties:Object = null ):IRouter
+		{
+			return apply( properties, new Router ) as IRouter
+		}
 		
 		
 		/**
@@ -105,17 +115,19 @@ package eu.kiichigo.route.dsl.fluent
 		/**
 		 * @copy		eu.kiichigo.route.dsl.fluent.IRouter#when
 		 */
-		public function when( guard:Object ):IRouter
+		public function when( guard:Object, properties:Object = null ):IRouter
 		{
 			if( action is IGuarded )
 			{
 				const guarded:IGuarded = action as IGuarded;
+				
+				if( guard is Function && properties != null )
+					guard = curry( guard as Function, properties is Array ? properties : [properties] );
+				
 				if( ( guarded.when as Array ) == null )
 					guarded.when = [guard];
 				else
-					guarded.when.push( guard );
-				
-				log( "when", guarded.when );
+					guarded.when.push( guard );				
 			}
 				
 			return this;

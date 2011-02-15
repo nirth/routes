@@ -7,6 +7,7 @@ package eu.kiichigo.route.kore
 	import flash.utils.describeType;
 	
 	import spark.skins.spark.mediaClasses.fullScreen.FullScreenButtonSkin;
+	import eu.kiichigo.route.guards.IGuarded;
 
 	public class Action implements IAction, IGuarded
 	{

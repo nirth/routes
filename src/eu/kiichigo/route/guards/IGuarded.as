@@ -1,4 +1,4 @@
-package eu.kiichigo.route.kore
+package eu.kiichigo.route.guards
 {
 	public interface IGuarded
 	{
