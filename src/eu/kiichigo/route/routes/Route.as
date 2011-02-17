@@ -11,6 +11,7 @@ package eu.kiichigo.route.routes
 	import eu.kiichigo.route.utils.ICommitable;
 	import eu.kiichigo.route.utils.add;
 	import eu.kiichigo.route.utils.invalidate;
+	import eu.kiichigo.utils.log;
 	
 	[Exclude(name="activate",kind="event")]
 	[Exclude(name="deactivate",kind="event")]
@@ -18,7 +19,9 @@ package eu.kiichigo.route.routes
 	[DefaultProperty("actions")]
 	
 	public class Route implements IRoute
-	{	
+	{
+		protected static const log:Function = eu.kiichigo.utils.log( Route );
+		
 		protected namespace generator;
 		protected namespace instance;
 		
@@ -163,7 +166,7 @@ package eu.kiichigo.route.routes
 		 * @copy 		eu.kiichigo.route.routes.IRoute#perceive
 		 */
 		public function perceive( percept:Object ):Object
-		{
+		{	
 			if( pattern == null ||
 				!( pattern is IPattern ? pattern.match( percept ) : pattern( percept ) ) )
 				return null;

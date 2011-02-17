@@ -10,6 +10,7 @@ package eu.kiichigo.route.pattern
 		 */
 		protected static const log:Function = eu.kiichigo.utils.log( Patterns );
 		
+		
 		public static const LOGIC_GATE_AND:String = "and";
 		public static const LOGIC_GATE_OR:String = "or";
 		public static const LOGIC_GATE_XOR:String = "xor";
@@ -17,9 +18,8 @@ package eu.kiichigo.route.pattern
 		public static const LOGIC_GATE_NOR:String = "nor";
 		public static const LOGIC_GATE_XNOR:String = "xnor";
 		
-		protected namespace lg_and;
-		protected namespace lg_or;
-		protected namespace lg_xor;
+		protected namespace and;
+		protected namespace or;
 		
 		
 		public function Patterns( ...rest )
@@ -35,6 +35,7 @@ package eu.kiichigo.route.pattern
 				this.patterns = patterns;
 			}
 		}
+		
 		
 		/**
 		 * @inheritDoc
@@ -95,26 +96,34 @@ package eu.kiichigo.route.pattern
 		override public function retreive( key:Object ):Object
 		{
 			var result:Object = null;
+			log( "retreive key:{0} patterns:{1}", key, _patterns );
 			for( var i:uint = 0; i < _patterns.length; i ++ )
 				if( _patterns[i].has( key ) )
 					result = _patterns[i].retreive( key );
 			return result;
 		}
 		
+		
 		/**
 		 * @inheritDoc
 		 */
 		override public function match( percept:Object ):Boolean
 		{
+			log( "match logic:{0}", _logicGate );
 			if( _logicGate == LOGIC_GATE_AND )
-				return lg_and::match( percept );
+				return and::match( percept );
 			else if ( _logicGate == LOGIC_GATE_OR )
-				return lg_or::match( percept );
+				return or::match( percept );
 			
 			return false;
 		}
 		
-		lg_and function match( percept:Object ):Boolean
+		
+		/**
+		 * @private
+		 * Performes match with "and" logic gates, which will return <code>true</code> if all child patterns return <code>true</code>.
+		 */
+		and function match( percept:Object ):Boolean
 		{
 			for( var i:uint = 0; i < _patterns.length; i ++ )
 				if( !_patterns[i].match( percept ) )
@@ -122,7 +131,12 @@ package eu.kiichigo.route.pattern
 			return true;
 		}
 		
-		lg_or function match( percept:Object ):Boolean
+		
+		/**
+		 * @private
+		 * Performes match with "or" logic gates, which will return <code>true</code> if any child patterns return <code>true</code>.
+		 */
+		or function match( percept:Object ):Boolean
 		{
 			for( var i:uint = 0; i < _patterns.length; i ++ )
 				if( _patterns[i].match( percept ) )

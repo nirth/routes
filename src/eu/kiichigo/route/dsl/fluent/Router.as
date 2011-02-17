@@ -122,7 +122,7 @@ package eu.kiichigo.route.dsl.fluent
 				const guarded:IGuarded = action as IGuarded;
 				
 				if( guard is Function && properties != null )
-					guard = curry( guard as Function, properties is Array ? properties : [properties] );
+					guard = curry( guard as Function, true, properties is Array ? properties : [properties] );
 				
 				if( ( guarded.when as Array ) == null )
 					guarded.when = [guard];

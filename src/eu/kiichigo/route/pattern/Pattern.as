@@ -4,6 +4,7 @@ package eu.kiichigo.route.pattern
 	import eu.kiichigo.route.utils.Hash;
 	import eu.kiichigo.route.utils.ICommitable;
 	import eu.kiichigo.route.utils.IHash;
+	import eu.kiichigo.utils.log;
 
 	public class Pattern extends Hash implements IPattern
 	{	

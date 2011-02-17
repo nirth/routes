@@ -45,6 +45,7 @@ package eu.kiichigo.route.sensors
 			initialize();
 		}
 		
+		
 		/**
 		 * @private
 		 * Handles initialization of a component.
@@ -53,6 +54,7 @@ package eu.kiichigo.route.sensors
 		{
 			
 		}
+		
 		
 		/**
 		 * @private
@@ -73,6 +75,7 @@ package eu.kiichigo.route.sensors
 		{
 			_router = value;
 		}
+		
 		
 		/**
 		 * List of <code>IRoute</code> instances for current <code>Perceiver</code>.
@@ -98,6 +101,17 @@ package eu.kiichigo.route.sensors
 			return route;
 		}
 		
+		
+		/**
+		 * @copy		eu.kiichigo.route.sensors.ISensor#pass
+		 */
+		public function pass( percept:Object ):void
+		{
+			for( var i:uint = 0; i < routes.length; i ++ )
+				routes[i].perceive( percept );
+		}
+		
+		
 		/**
 		 * Processes instance of <code>IRoute</code> and applies any changes if needed to work with current <code>ISensor</code>.
 		 * Override this method in subclasses.
@@ -109,15 +123,6 @@ package eu.kiichigo.route.sensors
 		protected function process( route:IRoute ):IRoute
 		{
 			return route;
-		}
-		
-		/**
-		 * @copy		eu.kiichigo.route.sensors.ISensor#pass
-		 */
-		public function pass( percept:Object ):void
-		{
-			for( var i:uint = 0; i < routes.length; i ++ )
-				routes[i].perceive( percept );
 		}
 	}
 }

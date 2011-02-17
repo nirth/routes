@@ -1,5 +1,6 @@
 package eu.kiichigo.route.routes
 {
+	import eu.kiichigo.fun.curry;
 	import eu.kiichigo.route.pattern.IPattern;
 	import eu.kiichigo.route.pattern.Pattern;
 	import eu.kiichigo.route.pattern.Patterns;
@@ -40,7 +41,7 @@ package eu.kiichigo.route.routes
 			
 			sensor = Events;
 			
-			typePattern.matcher = type;
+			typePattern.matcher = curry( type, false, "generator" );
 				
 			eventPattern.matcher = values;
 
@@ -62,7 +63,6 @@ package eu.kiichigo.route.routes
 		 */
 		public function set event( value:String ):void
 		{
-			log( "event:set", value );
 			eventPattern.store( "type", value );
 		}
 		
@@ -72,15 +72,14 @@ package eu.kiichigo.route.routes
 		 */
 		public function get generator():Class
 		{
-			return typePattern.retreive( "type" ) as Class
+			return typePattern.retreive( "generator" ) as Class
 		}
 		/**
 		 * @private
 		 */
 		public function set generator( value:Class ):void
 		{
-			log( "generator:set", value );
-			typePattern.store( "type", value );
+			typePattern.store( "generator", value );
 		}
 	}
 }

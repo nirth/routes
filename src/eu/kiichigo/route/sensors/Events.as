@@ -2,8 +2,6 @@ package eu.kiichigo.route.sensors
 {
 	import eu.kiichigo.route.pattern.IPattern;
 	import eu.kiichigo.route.routes.IRoute;
-	import eu.kiichigo.route.utils.EventProxy;
-	import eu.kiichigo.route.utils.IEventProxy;
 	import eu.kiichigo.utils.log;
 	
 	import flash.events.Event;
@@ -17,8 +15,16 @@ package eu.kiichigo.route.sensors
 	{
 		/**
 		 * @private
+		 * Logging
 		 */
-		protected const proxy:IEventProxy = new EventProxy( EventProxy.APPLICATION );
+		protected static const log:Function = eu.kiichigo.utils.log( Events );
+		
+		
+		/**
+		 * @private
+		 */
+		protected const proxy:IEventProxy = EventProxy.create( EventProxy.FLEX );
+		
 		
 		/**
 		 * @inheritDoc
@@ -30,6 +36,7 @@ package eu.kiichigo.route.sensors
 			
 			return route;
 		}
+		
 		
 		/**
 		 * @private

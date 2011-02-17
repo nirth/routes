@@ -1,7 +1,7 @@
 
 package eu.kiichigo.route.utils
 {
-	public function add( to:Object, initializer:Function ):Function
+	public function add( to:Object, initializer:Function = null ):Function
 	{
 		return function( from:Object, clear:Boolean = true ):void
 		{
@@ -13,7 +13,10 @@ package eu.kiichigo.route.utils
 				to.fixed = false;
 			
 			for( var i:uint = 0; i < from.length; i ++ )
-				to.push( initializer( from[i] ) );
+				if( initializer == null )
+					to.push( from[i] );
+				else
+					to.push( initializer( from[i] ) );
 			
 			to.fixed = true;
 		}

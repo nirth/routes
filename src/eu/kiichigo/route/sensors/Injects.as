@@ -2,8 +2,6 @@ package eu.kiichigo.route.sensors
 {
 	import eu.kiichigo.route.events.BuildEvent;
 	import eu.kiichigo.route.kore.IRouter;
-	import eu.kiichigo.route.utils.EventProxy;
-	import eu.kiichigo.route.utils.IEventProxy;
 	import eu.kiichigo.utils.log;
 	
 	import flash.events.Event;
@@ -22,13 +20,8 @@ package eu.kiichigo.route.sensors
 		/**
 		 * @private
 		 */
-		protected const application:IEventProxy = new EventProxy( EventProxy.APPLICATION );
+		protected const eventProxy:IEventProxy = EventProxy.create( EventProxy.FLEX );
 		
-		
-		/**
-		 * @priavte
-		 */
-		protected const parent:IEventProxy = new EventProxy;
 		
 		
 		/**
@@ -36,8 +29,8 @@ package eu.kiichigo.route.sensors
 		 */
 		override protected function initialize():void
 		{
-			application.addEventListener( Event.ADDED_TO_STAGE, handle, true );
-			parent.addEventListener( BuildEvent.BUILD, handle );
+			//application.addEventListener( Event.ADDED_TO_STAGE, handle, true );
+			//parent.addEventListener( BuildEvent.BUILD, handle );
 		}
 		
 		
@@ -47,7 +40,7 @@ package eu.kiichigo.route.sensors
 		override public function set router( value:IRouter ):void
 		{
 			super.router = value;
-			parent.mode = value;
+			//parent.mode = value;
 		}
 		
 		
