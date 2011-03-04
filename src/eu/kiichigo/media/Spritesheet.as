@@ -1,11 +1,14 @@
 package eu.kiichigo.media
 {
+	import eu.kiichigo.utils.log;
 	import eu.kiichigo.utils.toString;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
+	import flash.display.IBitmapDrawable;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import flash.utils.describeType;
 	import flash.utils.getDefinitionByName;
 
 	/**
@@ -20,6 +23,13 @@ package eu.kiichigo.media
 	 */
 	public class Spritesheet
 	{
+		/**
+		 * @private
+		 * Logging
+		 */
+		protected static const log:Function = eu.kiichigo.utils.log( Spritesheet );
+		
+		
 		/**
 		 * @private
 		 */
@@ -53,10 +63,28 @@ package eu.kiichigo.media
 		 */
 		public function get sprites():Vector.<BitmapData>
 		{
+			//log( "sprites source:{0}, width:{1}, height:{2}", _source, _width, _height );
 			if( _sprites.length == 0 )
-				add( update(_source,_width,_height) );
+				add( update( _source, _width, _height ) );
 				
 			return _sprites;
+		}
+		
+		
+		/**
+		 * Returns ammount of sprites in list.
+		 * 
+		 * @langversion 3.0
+		 * @playerversion Flash 10
+		 * @playerversion AIR 2.5
+		 * @productversion Flex 4.5
+		 */
+		public function get length():uint
+		{
+			if( _source == null )
+				return 0;
+			
+			return sprites.length;
 		}
 		
 		/**
@@ -84,11 +112,15 @@ package eu.kiichigo.media
 			if( value == _source )
 				return;
 			
-			if( value != null && value is Class )
-				value = new value;
-			
-			if( value != null && value.hasOwnProperty( "bitmapData" ) )
-				value = value.bitmapData;
+			if( value ) {
+				if( value is Class )
+					value = new value;
+				
+				if( value is Bitmap )
+					log( "source:set bitmap", ( value as Bitmap ).bitmapData ), value = ( value as Bitmap ).bitmapData;
+				else if( value is IBitmapDrawable )
+					value =  draw( value as IBitmapDrawable );
+			}
 			
 			_source = value as BitmapData;
 			
@@ -241,10 +273,26 @@ package eu.kiichigo.media
 		 */
 		protected function add( items:Vector.<BitmapData> ):void
 		{
+			if( items === null )
+				return;
+			
 			_sprites.fixed = false;
 			while( items.length )
 				_sprites.push( items.shift() );
 			_sprites.fixed = true;
+		}
+		
+		
+		/**
+		 * @private
+		 */
+		protected function draw( source:IBitmapDrawable ):BitmapData
+		{
+			//log( describeType( source ) );
+			//log( "draw source:{0}, width:{1}, height:{2}", source, source["width"], source["height"] );
+			var bitmapData:BitmapData = new BitmapData( source["width"], source["height"], true, 0x000000 );
+				bitmapData.draw( source );
+			return bitmapData;
 		}
 		
 		
