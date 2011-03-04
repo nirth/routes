@@ -1,6 +1,6 @@
 package eu.kiichigo.route.routes
 {
-	import eu.kiichigo.fun.curry;
+	import eu.kiichigo.funs.curry;
 	import eu.kiichigo.route.pattern.IPattern;
 	import eu.kiichigo.route.pattern.Pattern;
 	import eu.kiichigo.route.pattern.Patterns;

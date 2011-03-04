@@ -1,6 +1,6 @@
 package eu.kiichigo.route.sensors
 {
-	import eu.kiichigo.fun.curry;
+	import eu.kiichigo.funs.curry;
 	import eu.kiichigo.route.kore.Action;
 	import eu.kiichigo.route.routes.Handle;
 	import eu.kiichigo.route.utils.add;

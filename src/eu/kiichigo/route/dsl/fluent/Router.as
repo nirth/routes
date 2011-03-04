@@ -1,6 +1,6 @@
 package eu.kiichigo.route.dsl.fluent
 {
-	import eu.kiichigo.fun.curry;
+	import eu.kiichigo.funs.curry;
 	import eu.kiichigo.route.guards.IGuarded;
 	import eu.kiichigo.route.kore.Action;
 	import eu.kiichigo.route.kore.IAction;

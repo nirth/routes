@@ -29,39 +29,43 @@ package eu.kiichigo.utils
 	import flash.utils.getTimer;
 	
 	/**
-	 * Logger helper, work with Web Browser console and trace.
+	 * Higher order function. Logging/tracing helper.
 	 * <code>
-	 * // Initializer:
-	 * protected static const logger:Function = eu.kiichigo.debug.log( SomeClass );
-	 * // Log simple trace-like messages
 	 * 
-	 * // Will display "one, two"
-	 * logger( "one", "two" );
-	 * // Will display "collection someId initialized with 5 elements.
-	 * logger( "collection {0} initialized with {2} elements", myCollection.id, myCollection.length ); 
-	 * // Will display "Object SomeObject has width 120"
-	 * logger( "Object $name has width $width", { name: "SomeObject", width: 120 } );
-	 * </code>
+	 * @param	filter		Class or String that will be used to prefix log messages.
+	 * @param	logger		Function reference. Reference to the fuction that's used to output messages.
+	 * 
+	 * @return				Function, thats ready to log.
 	 */
-	public function log( filter:Object = "", ...rest:* ):Function
+	public function log( filter:Object = "", logger:Function = null ):Function
 	{
 		if( filter is Class )
 			filter = getQualifiedClassName( filter ).split( "::" )[1];
 		
-		if(rest && rest.length)
-			rest = [filter].concat(rest), filter = "";
+		if( logger == null )
+			logger = trace;
 		
-		var closure:Function = function( ...messages:* ):void
-		{
-			var string:String = ( ( filter &&  filter.length ) ? "[" + filter + "] " : "" );
+		
+		return function( ...messages:* ):void {
+			var time:String = ( Math.round( getTimer() / 10 ) / 100 ).toString();
+			var parts:Array = time.split( "." );
+			var s:String = parts[0];
+			var ms:String = parts.length == 1 ? "0" : parts[1];
+			
+			while( s.length < 3 )
+				s = "0" + s;
+			while( ms.length < 3 )
+				ms = "0" + ms;
+				
+			time = s + "." + ms;
+			
+			var string:String = "[" + time + "]" + ( ( filter &&  filter.length ) ? "[" + filter + "] " : "" );
 			
 			if( messages.length == 2 &&
-				messages[0].toString().indexOf( "$" ) != -1 )
-			{
+				messages[0].toString().indexOf( "$" ) != -1 ) {
 				string += messages[0];
 				var max:uint = 55;
-				while( string.indexOf( "$" ) != -1 && max > 0 )
-				{
+				while( string.indexOf( "$" ) != -1 && max > 0 ) {
 					var from:int = string.indexOf( "$" );
 					var to:int = string.indexOf( " ", from );
 					var name:String = string.substring( from, to == -1 ? string.length : to );
@@ -72,14 +76,11 @@ package eu.kiichigo.utils
 			else if( messages &&
 				     messages[0] &&
 					 messages[0].toString().indexOf( "{" ) != -1 && 
-					 messages[0].toString().indexOf( "}" ) != -1 )
-			{
+					 messages[0].toString().indexOf( "}" ) != -1 ) {
 				string += messages.shift();
 				for( var i:int = 0; i < messages.length; i ++ )
 					string = string.split( "{" + i + "}" ).join( messages[i] );
-			}
-			else
-			{
+			} else {
 				for( var j:uint = 0; j < messages.length; j ++ )
 					if( messages[j] is String )
 						string += messages[j] + " ";
@@ -93,14 +94,15 @@ package eu.kiichigo.utils
 						string += messages[j].toString() + " ";
 			}	
 			
-			if( ExternalInterface.available )
-				ExternalInterface.call( "console.log", string );
-			trace( string );
+			logger( string );
 		}
-			
-		if( rest && rest.length )
-			closure.apply( null, rest );
-		
-		return closure
 	}
+}
+
+import flash.external.ExternalInterface;
+
+function $console( string:String ):void
+{
+	if( ExternalInterface.available )
+		ExternalInterface.call( "console.log", string );
 }

@@ -22,17 +22,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package eu.kiichigo.route.utils
+package eu.kiichigo.utils
 {
-	import flash.events.Event;
-
-	public function handler( closure:Function, includeEvent:Boolean = false, ...rest ):Function
+	public function toArray( vector:Object ):Array
 	{
-		var h:Function = function( event:Event ):void {
-			closure.apply( null, includeEvent ? [event].concat( rest ) : rest );
-			event.target.removeEventListener( event.type, h );
-		}
-			
-		return h;
+		var result:Array = [];
+		for( var i:uint = 0; i < vector.length; i ++ )
+			result.push( vector[i] );
+		return result;
 	}
 }
