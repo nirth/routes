@@ -1,7 +1,8 @@
 /*
 The MIT License
 
-Copyright (c) 2008 David Sergey, nirth@fouramgames.com, nirth.furzahad@gmail.com
+Copyright (c) 2009-2011 
+David "Nirth" Sergey ( nirth@kiichigo.eu, nirth.furzahad@gmail.com )
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
