@@ -31,15 +31,16 @@ package eu.kiichigo.route.sensors
 		public static const FLEX:String = "flex";
 		
 		
-		public static function create( mode:String ):IEventProxy
+		public static function create(mode:String):IEventProxy
 		{
 			var ep:EventProxy = new EventProxy;
 				
 			if( mode == FLEX )
 			{
-				var app:IEventDispatcher = getDefinitionByName( "mx.core.FlexGlobals" )["topLevelApplication"];
-
-				ep.add( app );
+				var app:IEventDispatcher = getDefinitionByName("mx.core.FlexGlobals")["topLevelApplication"];
+				ep.add(app);
+				
+				log("EventProxy.create({0}):{1}", mode, app);
 			}
 			
 			return ep;
@@ -77,7 +78,7 @@ package eu.kiichigo.route.sensors
 		/**
 		 * @copy		eu.kiichigo.route.sensors.IEventProxy#add
 		 */
-		public function add( dispatcher:IEventDispatcher ):IEventDispatcher
+		public function add(dispatcher:IEventDispatcher):IEventDispatcher
 		{
 			_dispatchers.fixed = false;
 			_dispatchers.push( dispatcher );
@@ -132,7 +133,7 @@ package eu.kiichigo.route.sensors
 		/**
 		 * @copy		flash.events.IEventDispatcher#dispatchEvent
 		 */
-		public function dispatchEvent( event:Event ):Boolean
+		public function dispatchEvent(event:Event):Boolean
 		{
 			return true;
 		}
@@ -156,7 +157,7 @@ package eu.kiichigo.route.sensors
 		}
 		
 		
-		protected function commit( dispatcher:Object, handler:Object, add:Boolean = true ):void
+		protected function commit(dispatcher:Object, handler:Object, add:Boolean = true):void
 		{
 			var dispatchers:Vector.<IEventDispatcher> =
 				( dispatcher is IEventDispatcher ?

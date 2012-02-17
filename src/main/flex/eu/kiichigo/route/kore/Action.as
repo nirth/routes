@@ -1,5 +1,6 @@
 package eu.kiichigo.route.kore
 {
+	import eu.kiichigo.route.guards.IGuarded;
 	import eu.kiichigo.route.routes.IRoute;
 	import eu.kiichigo.utils.log;
 	import eu.kiichigo.utils.toString;
@@ -7,7 +8,6 @@ package eu.kiichigo.route.kore
 	import flash.utils.describeType;
 	
 	import spark.skins.spark.mediaClasses.fullScreen.FullScreenButtonSkin;
-	import eu.kiichigo.route.guards.IGuarded;
 
 	public class Action implements IAction, IGuarded
 	{
@@ -65,12 +65,23 @@ package eu.kiichigo.route.kore
 		/**
 		 * eu.kiichigo.route.kore.IAction#run
 		 */
-		public function run( percept:Object ):IAction
+		public function run(percept:Object):IAction
 		{
-			if( check( percept ) )
-				exec( percept );
+			if(check(percept))
+				exec(percept);
 			
 			return this;
+		}
+		
+		/**
+		 * eu.kiichigo.route.kore.IAction#pass
+		 */
+		public function pass(percept:Object):Object
+		{
+			if (_route)
+				_route.pass(percept);
+			
+			return percept;
 		}
 		
 		
@@ -106,7 +117,7 @@ package eu.kiichigo.route.kore
 		 * 
 		 * @return				Boolean, 
 		 */
-		protected function testPredicate( predicate:Object, percept:Object ):Boolean
+		protected function testPredicate(predicate:Object, percept:Object):Boolean
 		{
 			if( predicate == null )
 				var result:Boolean = true; // default is true
@@ -127,7 +138,7 @@ package eu.kiichigo.route.kore
 		/**
 		 * Override this method in subclassed, in order to implement functionality of a <code>Action</code>
 		 */
-		protected function exec( percept:Object ):void
+		protected function exec(percept:Object):void
 		{
 			
 		}

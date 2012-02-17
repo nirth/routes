@@ -8,7 +8,7 @@ package eu.kiichigo.route.actions
 		/**
 		 * @private
 		 */
-		protected var log:Function = eu.kiichigo.utils.log( "Log" );
+		protected var log:Function = eu.kiichigo.utils.log("Log");
 		
 		/**
 		 * @private

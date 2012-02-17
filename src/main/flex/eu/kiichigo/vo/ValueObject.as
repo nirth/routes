@@ -2,6 +2,8 @@ package eu.kiichigo.vo
 {
 	import eu.kiichigo.utils.apply;
 	import eu.kiichigo.utils.definition.Definition;
+	import eu.kiichigo.utils.definition.IProperty;
+	import eu.kiichigo.utils.definition.Metadata;
 	import eu.kiichigo.utils.definition.getDefinition;
 	import eu.kiichigo.utils.getClassName;
 	import eu.kiichigo.utils.log;
@@ -16,6 +18,8 @@ package eu.kiichigo.vo
 	[Bindable]
 	public class ValueObject extends EventDispatcher implements IValueObject
 	{
+		protected static const log:Function = eu.kiichigo.utils.log("ValueObject");
+		
 		public function ValueObject()
 		{
 			super();
@@ -25,10 +29,20 @@ package eu.kiichigo.vo
 		
 		protected function initialize():void
 		{
-			//var definition:Definition = getDefinition(this);
-
-			//for( var i:uint = 0; i < definition.properties.length; i ++ )
-			//	log( ValueObject )( definition.properties[i].metadata );
+			const properties:Vector.<IProperty> = getDefinition(this).properties;
+			var metadatas:Vector.<Metadata>;
+			var metadata:Metadata;
+			
+			for (var i:uint = 0; i < properties.length; i ++) {
+				metadatas = properties[i].findMetadata("Map");
+				
+				if (metadatas != null && metadatas.length > 0) {
+					for (var j:int = 0; j < metadatas.length; j ++) {
+						if (metadatas[j].name.toLowerCase() == "map")
+							map(properties[i].name);
+					}
+				}
+			}
 		}
 		
 		/**

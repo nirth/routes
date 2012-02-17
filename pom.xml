@@ -135,7 +135,7 @@
 					<namespaces> 
 	                 	<namespace> 
 							<uri>http://kiichigo.eu/routes</uri> 
-							<manifest>manifest.xml</manifest> 
+							<manifest>src/main/resources/manifest.xml</manifest> 
 						</namespace> 
 	                </namespaces> 
 	                <includeNamespaces> 
@@ -182,4 +182,10 @@
 			</plugin>
 		</plugins>
 	</build>
+	<organization>
+		<name>Kiichigo, LLC</name>
+		<url>http://kiichigo.eu</url>
+	</organization>
+	<name>Routes</name>
+	<description>Routes Framework</description>
 </project>

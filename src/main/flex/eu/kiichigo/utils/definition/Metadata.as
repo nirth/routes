@@ -25,7 +25,7 @@ package eu.kiichigo.utils.definition
 {	
 	public class Metadata
 	{
-		public function Metadata( name:String = null, args:Vector.<Arg> = null )
+		public function Metadata(name:String = null, args:Vector.<Arg> = null)
 		{
 			super();
 			

@@ -96,7 +96,7 @@ package eu.kiichigo.route.pattern
 		override public function retreive( key:Object ):Object
 		{
 			var result:Object = null;
-			log( "retreive key:{0} patterns:{1}", key, _patterns );
+			//log( "retreive key:{0} patterns:{1}", key, _patterns );
 			for( var i:uint = 0; i < _patterns.length; i ++ )
 				if( _patterns[i].has( key ) )
 					result = _patterns[i].retreive( key );
@@ -109,7 +109,7 @@ package eu.kiichigo.route.pattern
 		 */
 		override public function match( percept:Object ):Boolean
 		{
-			log( "match logic:{0}", _logicGate );
+			//log( "match logic:{0}", _logicGate );
 			if( _logicGate == LOGIC_GATE_AND )
 				return and::match( percept );
 			else if ( _logicGate == LOGIC_GATE_OR )

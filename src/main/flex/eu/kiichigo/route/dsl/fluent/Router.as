@@ -60,9 +60,9 @@ package eu.kiichigo.route.dsl.fluent
 		/**
 		 * @copy		eu.kiichigo.route.dsl.fluent.IRouter#settings
 		 */
-		public function settings( properties:Object ):IRouter
+		public function settings(properties:Object):IRouter
 		{
-			return apply( properties, this ) as IRouter;
+			return apply(properties, this) as IRouter;
 		}
 		
 		

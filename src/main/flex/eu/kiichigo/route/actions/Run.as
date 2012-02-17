@@ -11,17 +11,11 @@ package eu.kiichigo.route.actions
 		/**
 		 * 
 		 */
-		public function get closure():Function
-		{
-			return _closure;
-		}
+		public function get closure():Function { return _closure; }
 		/**
 		 * @private
 		 */
-		public function set closure( value:Function ):void
-		{
-			_closure = value;
-		}
+		public function set closure(value:Function):void { _closure = value; }
 		
 		
 		/**
@@ -31,17 +25,11 @@ package eu.kiichigo.route.actions
 		/**
 		 * 
 		 */
-		public function get method():String
-		{
-			return _method;
-		}
+		public function get method():String { return _method; }
 		/**
 		 * @private
 		 */
-		public function set method( value:String ):void
-		{
-			_method = value;
-		}
+		public function set method(value:String):void { _method = value; }
 		
 		
 		/**
@@ -51,17 +39,11 @@ package eu.kiichigo.route.actions
 		/**
 		 * 
 		 */
-		public function get on():Object
-		{
-			return _on;
-		}
+		public function get on():Object { return _on; }
 		/**
 		 * @private
 		 */
-		public function set on( value:Object ):void
-		{
-			_on = value;
-		}
+		public function set on(value:Object):void { _on = value; }
 		
 		
 		/**
@@ -71,30 +53,24 @@ package eu.kiichigo.route.actions
 		/**
 		 * 
 		 */
-		public function get arguments():Array
-		{
-			return _arguments;
-		}
+		public function get arguments():Array { return _arguments; }
 		/**
 		 * @private
 		 */
-		public function set arguments( value:Array ):void
-		{
-			_arguments = value;
-		}
+		public function set arguments(value:Array):void { _arguments = value; }
 		
 		/**
 		 * @inheritDoc
 		 */
-		override protected function exec( percept:Object ):void
+		override protected function exec(percept:Object):void
 		{
-			var fun:Function = ( ( _closure as Function ) == null ) ? 
-					( ( _on is Class ) ?
-						_route.router.instances.retreive( _on as Class ) :
-						_on )[_method] :
+			var fun:Function = ((_closure as Function) == null) ? 
+					((_on is Class) ?
+						_route.router.instances.retreive(_on as Class) :
+						_on)[_method] :
 					_closure;
 			
-			fun.apply( null, _arguments );
+			fun.apply(null, _arguments);
 		}
 	}
 }

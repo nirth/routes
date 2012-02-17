@@ -25,16 +25,16 @@ package eu.kiichigo.route.sensors
 		/**
 		 * @private
 		 */
-		protected const proxy:IEventProxy = EventProxy.create( EventProxy.FLEX );
+		protected const proxy:IEventProxy = EventProxy.create(EventProxy.FLEX);
 		
 		
 		/**
 		 * @inheritDoc
 		 */
-		override protected function process( route:IRoute ):IRoute
+		override protected function process(route:IRoute):IRoute
 		{
 			if( route.pattern is IPattern )
-				proxy.addEventListener( ( route.pattern as IPattern ).retreive( "type" ) as String, handle );
+				proxy.addEventListener((route.pattern as IPattern).retreive("type") as String, handle);
 			
 			return route;
 		}
@@ -43,7 +43,7 @@ package eu.kiichigo.route.sensors
 		/**
 		 * @private
 		 */
-		protected function handle( event:Event ):void
+		protected function handle(event:Event):void
 		{
 			pass( event );
 		}

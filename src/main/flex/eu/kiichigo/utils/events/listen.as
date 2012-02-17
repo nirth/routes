@@ -24,31 +24,30 @@ THE SOFTWARE.
 */
 package eu.kiichigo.utils.events
 {
-
-	public function listen( closure:Function, ...rest:* ):void
+	public function listen(closure:Function, ...rest:*):void
 	{
 		var i:uint = 0;
 		var l:uint = rest.length;
 		var args:Array = [];
 		
-		if( rest[l - 3] is Boolean )
-			args = rest.splice( -3, 3 );
-		else if( rest[l - 2] is Boolean )
-			args = rest.splice( -2, 2 );
-		else if( rest[l - 1] is Boolean )
-			args = rest.splice( -1, 1 );
+		if (rest[l - 3] is Boolean)
+			args = rest.splice(-3, 3);
+		else if (rest[l - 2] is Boolean)
+			args = rest.splice(-2, 2);
+		else if (rest[l - 1] is Boolean)
+			args = rest.splice(-1, 1);
 
-		if( closure.length == 3 && args.length > 1 )
+		if (closure.length == 3 && args.length > 1)
 			args = [args[0]];
 		
-		if( rest[0] is Function )
+		if (rest[0] is Function)
 			var handler:Function = rest.shift();
 
-		if( handler as Function )	//We assuming that all Events have one Handler
-			for( i = 0; i < rest.length; i ++ )
-				closure.apply( null, [ rest[i], handler ].concat( args ) );
+		if (handler as Function)	//We assuming that all Events have one Handler
+			for (i = 0; i < rest.length; i ++)
+				closure.apply(null, [ rest[i], handler ].concat(args));
 		else						//Else we asume that arguments are passed in a way [event, handler, event, handler]
-			for( i = 0; i < rest.length; i += 2 )
-				closure.apply( null, [rest[i], rest[i + 1]].concat( args ) );
+			for (i = 0; i < rest.length; i += 2)
+				closure.apply(null, [rest[i], rest[i + 1]].concat(args));
 	}
 }

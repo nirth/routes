@@ -40,13 +40,9 @@ package eu.kiichigo.route.routes
 			super();
 			
 			sensor = Events;
-			
-			typePattern.matcher = curry( type, false, "generator" );
-				
+			typePattern.matcher = curry(type, false, "generator");
 			eventPattern.matcher = values;
-
-			pattern = new Patterns( typePattern, eventPattern );
-			
+			pattern = new Patterns(typePattern, eventPattern);
 			generator = Event;
 		}
 		
@@ -80,6 +76,11 @@ package eu.kiichigo.route.routes
 		public function set generator( value:Class ):void
 		{
 			typePattern.store( "generator", value );
+		}
+		
+		public function toString():String
+		{
+			return "[Handle event=" + event + " generator=" + generator + "]";
 		}
 	}
 }

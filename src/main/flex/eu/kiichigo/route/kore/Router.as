@@ -23,8 +23,16 @@ package eu.kiichigo.route.kore
 		 * @private
 		 * Logging
 		 */
-		protected static const log:Function = eu.kiichigo.utils.log( Router );
+		protected static const log:Function = eu.kiichigo.utils.log(Router);
 		
+		/**
+		 * @private
+		 */
+		public function Router() { super(); }
+		
+		/**************
+		 * Properties *
+		 **************/
 		
 		/**
 		 * @private
@@ -78,10 +86,11 @@ package eu.kiichigo.route.kore
 		/**
 		 * @private
 		 */
-		public function set routes( value:Vector.<IRoute> ):void
+		public function set routes(value:Vector.<IRoute>):void
 		{
 			clear();
-			eu.kiichigo.route.utils.add( _routes, initialize )( value );
+			eu.kiichigo.route.utils.add(_routes, initialize)(value);
+			log("set:routes({0}):{1}", value, _routes);
 		}
 		
 		
@@ -112,7 +121,7 @@ package eu.kiichigo.route.kore
 		/**
 		 * @copy		eu.kiichigo.route.kore.IRouter#add
 		 */
-		public function add( route:IRoute ):IRoute
+		public function add(route:IRoute):IRoute
 		{
 			_routes.push( initialize( route ) );
 			return route;
@@ -133,7 +142,6 @@ package eu.kiichigo.route.kore
 			_routes.fixed = true;
 		}
 		
-		
 		/**
 		 * @private
 		 * Initializes <code>IRoute</code> as a part of <code>IRouter</code>.
@@ -141,7 +149,6 @@ package eu.kiichigo.route.kore
 		protected function initialize( route:IRoute ):IRoute
 		{
 			route.router = this;
-			
 			return route;
 		}
 	}

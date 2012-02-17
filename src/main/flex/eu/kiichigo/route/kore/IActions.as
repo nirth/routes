@@ -9,7 +9,7 @@ package eu.kiichigo.route.kore
 		/**
 		 * 
 		 */
-		function set list( value:Object ):void;
+		function set list(value:Object):void;
 		
 		
 		/**
@@ -18,6 +18,6 @@ package eu.kiichigo.route.kore
 		 * @return 
 		 * 
 		 */
-		function add( action:IAction ):IAction;
+		function add(action:IAction):IAction;
 	}
 }

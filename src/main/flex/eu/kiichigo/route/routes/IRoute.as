@@ -19,7 +19,7 @@ package eu.kiichigo.route.routes
 		/**
 		 * @private
 		 */
-		function set router( value:IRouter ):void;
+		function set router(value:IRouter):void;
 		
 		/**
 		 * Allowed types are:
@@ -34,7 +34,7 @@ package eu.kiichigo.route.routes
 		/**
 		 * @private
 		 */
-		function set actions( value:Object ):void;
+		function set actions(value:Object):void;
 		
 		/**
 		 * An instance of <code>ISensor</code> associated with current <code>IRoute</code>. Acceptable values are instance of <code>ISensor</code> or <code>Class</code>.
@@ -43,7 +43,7 @@ package eu.kiichigo.route.routes
 		/**
 		 * @private
 		 */
-		function set sensor( value:Object ):void;
+		function set sensor(value:Object):void;
 		
 		/**
 		 * <code>IPattern</code> instance or <code>closure</code> that will evaluate incoming <code>percept</code> and "decide" whether current <code>IRoute</code> instance will accept it or not.
@@ -54,7 +54,7 @@ package eu.kiichigo.route.routes
 		/**
 		 * @private
 		 */
-		function set pattern( value:Object ):void;
+		function set pattern(value:Object):void;
 		
 		
 		/**
@@ -63,7 +63,7 @@ package eu.kiichigo.route.routes
 		 * @return 
 		 * 
 		 */
-		function add( action:IAction ):IAction;
+		function add(action:IAction):IAction;
 		
 		
 		/**
@@ -72,6 +72,14 @@ package eu.kiichigo.route.routes
 		 * @return 
 		 * 
 		 */
-		function perceive( percept:Object ):Object;
+		function perceive(percept:Object):Object;
+		
+		/**
+		 * Passes percept along <code>IRoute</code> instances registered with <code>ISensor</code>.
+		 * 
+		 * @param	percept
+		 * @return	Current instance of <code>IRoute</code>.
+		 */
+		function pass(percept:Object):IRoute;
 	}
 }

@@ -12,7 +12,7 @@ package eu.kiichigo.route.kore
 		/**
 		 * @private
 		 */
-		function set group( value:Object ):void;
+		function set group(value:Object):void;
 		
 		/**
 		 * List of routes.

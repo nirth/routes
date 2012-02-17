@@ -30,7 +30,7 @@ package eu.kiichigo.utils.definition
 		function get type():Class;
 		function get metadata():Vector.<Metadata>;
 		
-		function indexOfMetadata( name:String ):int;
-		function findMetadata( name:String ):Vector.<Metadata>;
+		function indexOfMetadata(name:String):int;
+		function findMetadata(name:String):Vector.<Metadata>;
 	}
 }

@@ -35,13 +35,21 @@ package eu.kiichigo.route.kore
 		/**
 		 * @private
 		 */
-		function set route( value:IRoute ):void;
+		function set route(value:IRoute):void;
 		
 		/**
 		 * Executes current <code>IAction</code> instance with <code>percept</code> received from the <code>IRoute</code> 
 		 * @param percept		<code>Object</code> passed by <code>IRoute</code>.
 		 * @return 				An instance of current <code>IAction</code>.
 		 */
-		function run( percept:Object ):IAction;
+		function run(percept:Object):IAction;
+		
+		/**
+		 * Passes percept along instances of <code>IRoute</code> registered with same <code>ISensor</code>.
+		 * 
+		 * @param	percept
+		 * @return	<code>Object</code>, percept.
+		 */
+		function pass(percept:Object):Object;
 	}
 }

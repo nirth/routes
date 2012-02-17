@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<componentPackage>
+	<component class="eu.kiichigo.route.kore.Router" />
+	<component class="eu.kiichigo.route.routes.Route" />
+	<component class="eu.kiichigo.route.routes.Handle" />
+	<component class="eu.kiichigo.route.routes.Inject" />
+	<component class="eu.kiichigo.route.actions.Apply" />
+	<component class="eu.kiichigo.route.actions.Bind" />
+	<component class="eu.kiichigo.route.actions.Copy" />
+	<component class="eu.kiichigo.route.actions.Run" />
+	<component class="eu.kiichigo.route.actions.Log" />
+</componentPackage>

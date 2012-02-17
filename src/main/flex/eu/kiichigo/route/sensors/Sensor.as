@@ -27,6 +27,7 @@ package eu.kiichigo.route.sensors
 	import eu.kiichigo.route.kore.IRouter;
 	import eu.kiichigo.route.routes.IRoute;
 	import eu.kiichigo.route.utils.ICommitable;
+	import eu.kiichigo.utils.log;
 	
 	/**
 	 * Base class for Sensors in Route Framework. It implements <code>ISensor</code> API and defines auxiliary methods to be overriden in subclasses that can handle initialization.
@@ -37,6 +38,11 @@ package eu.kiichigo.route.sensors
 	 */
 	public class Sensor implements ISensor
 	{
+		/**
+		 * @private
+		 */
+		protected static const log:Function = eu.kiichigo.utils.log(Sensor);
+		
 		/**
 		 * Constructor
 		 */
@@ -88,7 +94,7 @@ package eu.kiichigo.route.sensors
 		/**
 		 * @copy		eu.kiichigo.route.sensors.ISensor#add
 		 */
-		public function add( route:IRoute ):IRoute
+		public function add(route:IRoute):IRoute
 		{
 			if( route === null )
 				return null;
@@ -107,10 +113,11 @@ package eu.kiichigo.route.sensors
 		/**
 		 * @copy		eu.kiichigo.route.sensors.ISensor#pass
 		 */
-		public function pass( percept:Object ):void
+		public function pass(percept:Object):void
 		{
-			for( var i:uint = 0; i < routes.length; i ++ )
-				routes[i].perceive( percept );
+			log("pass({0}) => {1}", percept, routes);
+			for (var i:uint = 0; i < routes.length; i ++)
+				routes[i].perceive(percept);
 		}
 		
 		
@@ -122,7 +129,7 @@ package eu.kiichigo.route.sensors
 		 * 
 		 * @return			Initialized with current <code>ISensor</code> instance of <code>IRoute</code>.
 		 */
-		protected function process( route:IRoute ):IRoute
+		protected function process(route:IRoute):IRoute
 		{
 			return route;
 		}

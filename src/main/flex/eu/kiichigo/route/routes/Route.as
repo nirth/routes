@@ -17,7 +17,6 @@ package eu.kiichigo.route.routes
 	[Exclude(name="deactivate",kind="event")]
 	
 	[DefaultProperty("actions")]
-	
 	public class Route implements IRoute
 	{
 		protected static const log:Function = eu.kiichigo.utils.log( Route );
@@ -33,14 +32,14 @@ package eu.kiichigo.route.routes
 		{
 			// If perceiver set as Class, and _router is passed, ask router to create and cache an instance of IPerceiver
 			if( generator::sensor != null && instance::sensor == null && _router != null )
-				instance::sensor = _router.instances.retreive( generator::sensor ) as ISensor;
+				instance::sensor = _router.instances.retreive(generator::sensor) as ISensor;
 				
-			if( instance::sensor == null ||
+			if (instance::sensor == null ||
 				_actions 		 == null ||
 				_pattern 	     == null ||
-				_router 		 == null )
+				_router 		 == null)
 				return;
-			
+
 			_actions.route = this;
 			
 			instance::sensor.add( this );
@@ -94,7 +93,7 @@ package eu.kiichigo.route.routes
 		/**
 		 * @private
 		 */
-		public function set actions( value:Object ):void
+		public function set actions(value:Object):void
 		{
 			if( value is IActions )
 				_actions = value as IActions;
@@ -165,15 +164,19 @@ package eu.kiichigo.route.routes
 		/**
 		 * @copy 		eu.kiichigo.route.routes.IRoute#perceive
 		 */
-		public function perceive( percept:Object ):Object
-		{	
-			if( pattern == null ||
-				!( pattern is IPattern ? pattern.match( percept ) : pattern( percept ) ) )
+		public function perceive(percept:Object):Object
+		{
+			log("perceive({0})", percept);
+			
+			if (pattern == null ||
+				!(pattern is IPattern ? pattern.match(percept) : pattern(percept)))
 				return null;
+			
+			log("perceive:matched running {0}", _actions);
 			
 			_router.percept = percept;
 			
-			_actions.run( percept );
+			_actions.run(percept);
 			
 			return percept;
 		}
@@ -190,6 +193,16 @@ package eu.kiichigo.route.routes
 				action = _actions.add( action );
 			
 			return action;
+		}
+		
+		/**
+		 * @copy		eu.kiichigo.route.orutes.IRoute#pass
+		 */
+		public function pass(percept:Object):IRoute
+		{
+			if (instance::sensor != null)
+				instance::sensor.pass(percept);
+			return this;
 		}
 	}
 }

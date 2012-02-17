@@ -25,9 +25,12 @@ THE SOFTWARE.
 package eu.kiichigo.route.kore
 {
 	import eu.kiichigo.route.utils.add;
+	import eu.kiichigo.utils.log;
 
 	public class Actions extends Action implements IActions
-	{	
+	{
+		protected static const log:Function = eu.kiichigo.utils.log(Actions);
+		
 		/**
 		 * @private
 		 */
@@ -43,10 +46,12 @@ package eu.kiichigo.route.kore
 		/**
 		 * @private
 		 */
-		public function set list( value:Object ):void
+		public function set list(value:Object):void
 		{
-			eu.kiichigo.route.utils.add( _list, process )( value );
+			eu.kiichigo.route.utils.add(_list, process)(value);
 			commit();
+			
+			log("set:list({0}):{1}", value, _list);
 		}
 		
 		
@@ -67,8 +72,8 @@ package eu.kiichigo.route.kore
 		 */
 		override protected function exec( percept:Object ):void
 		{
-			for( var i:uint = 0; i < _list.length; i ++ )
-				_list[i].run( percept );
+			for (var i:uint = 0; i < _list.length; i ++)
+				_list[i].run(percept);
 		}
 		
 		
@@ -76,9 +81,9 @@ package eu.kiichigo.route.kore
 		 * @private
 		 * Initializes an action with an instance of <code>IRoute</code>. Accepts instances of <code>IAction</code> and <code>Function</code>.
 		 */
-		protected function process( action:Object ):IAction
+		protected function process(action:Object):IAction
 		{
-			return ( action is IAction ? action : new Closure( action as Function ) ) as IAction;
+			return (action is IAction ? action : new Closure( action as Function)) as IAction;
 		}
 		
 		
@@ -90,6 +95,14 @@ package eu.kiichigo.route.kore
 			if( _route != null && _list.length > 0 )
 				for( var i:uint = 0; i < _list.length; i ++ )
 					_list[i].route = _route;
+		}
+		
+		/**
+		 * @private
+		 */
+		override public function toString():String
+		{
+			return "[Actions length=" + _list.length + " actions=" + _list + "]";
 		}
 	}
 }
