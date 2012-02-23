@@ -1,5 +1,6 @@
 package eu.kiichigo.route.kore
 {
+	import eu.kiichigo.route.events.BuildEvent;
 	import eu.kiichigo.route.guards.IGuarded;
 	import eu.kiichigo.route.routes.IRoute;
 	import eu.kiichigo.utils.log;
@@ -17,6 +18,10 @@ package eu.kiichigo.route.kore
 		 */
 		protected static const log:Function = eu.kiichigo.utils.log( Action );
 		
+		/**
+		 * Indicates whether object was builded, and sent notification to via router.
+		 */
+		private var builded:Boolean;
 		
 		/**
 		 * @private
@@ -44,11 +49,9 @@ package eu.kiichigo.route.kore
 		 * @private
 		 */
 		protected var _when:Object = null;
-		
 		/**
 		 * @copy		eu.kiichigo.route.kore.IGuard#predicate
 		 */
-		
 		public function get when():Object
 		{
 			return _when;
@@ -141,10 +144,13 @@ package eu.kiichigo.route.kore
 		protected function exec(percept:Object):void { /* virtual method */ }
 		
 		/**
-		 *  
-		 * 
+		 * Commits changes to 
 		 */		
-		protected function commit():void { /* virtual method */ }
+		protected function commit():void
+		{
+			if (!builded)
+				_route.pass(new BuildEvent(BuildEvent.BUILD, this));
+		}
 		
 		
 		/**

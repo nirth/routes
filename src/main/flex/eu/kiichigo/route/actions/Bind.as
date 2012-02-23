@@ -22,9 +22,6 @@ package eu.kiichigo.route.actions
 		{
 			super.process(from, fromField, to, toField);
 			BindingUtils.bindProperty(to, toField as String, from, fromField);
-			
-			if (from is ValueObject)
-				(from as ValueObject).dispatchReadOnly();
 		}
 	}
 }

@@ -24,7 +24,14 @@ THE SOFTWARE.
 */
 package eu.kiichigo.utils
 {
-	public function toArray( vector:Object ):Array
+	/**
+	 * Converts <code>Vector.<*></code> to an <code>Array</code>.
+	 * 
+	 * @param	vector	<code>Vector</code>, that will be converted to array.
+	 * 
+	 * @return	<code>Array</code> instance, containing all elements of <code>vector</code>.
+	 */
+	public function toArray(vector:Object):Array
 	{
 		var result:Array = [];
 		for( var i:uint = 0; i < vector.length; i ++ )

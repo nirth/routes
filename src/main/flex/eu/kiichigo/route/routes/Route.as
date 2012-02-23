@@ -95,11 +95,11 @@ package eu.kiichigo.route.routes
 		 */
 		public function set actions(value:Object):void
 		{
-			if( value is IActions )
+			if (value is IActions)
 				_actions = value as IActions;
 			else
 			{
-				if( value is Function || value is IAction )
+				if (value is Function || value is IAction)
 					value = [value];
 				
 				_actions = new Actions;
@@ -172,8 +172,6 @@ package eu.kiichigo.route.routes
 				!(pattern is IPattern ? pattern.match(percept) : pattern(percept)))
 				return null;
 			
-			log("perceive:matched running {0}", _actions);
-			
 			_router.percept = percept;
 			
 			_actions.run(percept);
@@ -185,12 +183,12 @@ package eu.kiichigo.route.routes
 		/**
 		 * @copy		eu.kiichigo.route.routes.IRoute#add
 		 */
-		public function add( action:IAction ):IAction
+		public function add(action:IAction):IAction
 		{
-			if( _actions == null )
+			if	(_actions == null)
 				actions = [action];
 			else
-				action = _actions.add( action );
+				action = _actions.add(action);
 			
 			return action;
 		}

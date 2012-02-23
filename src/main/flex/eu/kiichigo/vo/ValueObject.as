@@ -1,5 +1,6 @@
 package eu.kiichigo.vo
 {
+	import eu.kiichigo.kiichigo_internal;
 	import eu.kiichigo.utils.apply;
 	import eu.kiichigo.utils.definition.Definition;
 	import eu.kiichigo.utils.definition.IProperty;
@@ -12,6 +13,7 @@ package eu.kiichigo.vo
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.utils.ByteArray;
+	import flash.utils.Dictionary;
 	
 	import mx.events.PropertyChangeEvent;
 	
@@ -19,6 +21,8 @@ package eu.kiichigo.vo
 	public class ValueObject extends EventDispatcher implements IValueObject
 	{
 		protected static const log:Function = eu.kiichigo.utils.log("ValueObject");
+		
+		protected const mappings:Dictionary = new Dictionary;
 		
 		public function ValueObject()
 		{
@@ -30,24 +34,24 @@ package eu.kiichigo.vo
 		protected function initialize():void
 		{
 			const properties:Vector.<IProperty> = getDefinition(this).properties;
+			
 			var metadatas:Vector.<Metadata>;
 			var metadata:Metadata;
+			var toIndex:int;
 			
 			for (var i:uint = 0; i < properties.length; i ++) {
 				metadatas = properties[i].findMetadata("Map");
 				
 				if (metadatas != null && metadatas.length > 0) {
 					for (var j:int = 0; j < metadatas.length; j ++) {
-						if (metadatas[j].name.toLowerCase() == "map")
+						if (metadatas[j].name.toLowerCase() == "map") {
 							map(properties[i].name);
+							
+							toIndex = metadatas[j].keys.indexOf("to");
+						}
 					}
 				}
 			}
-		}
-		
-		public function dispatchReadOnly():void
-		{
-			dispatchEvent(new Event("readonly"));
 		}
 		
 		/**
