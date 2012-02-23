@@ -15,7 +15,6 @@ package eu.kiichigo.route.events
 			super( type );
 		}
 		
-		
 		/**
 		 * @inheritDoc
 		 */

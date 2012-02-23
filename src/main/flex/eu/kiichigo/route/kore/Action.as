@@ -138,28 +138,18 @@ package eu.kiichigo.route.kore
 		/**
 		 * Override this method in subclassed, in order to implement functionality of a <code>Action</code>
 		 */
-		protected function exec(percept:Object):void
-		{
-			
-		}
-		
+		protected function exec(percept:Object):void { /* virtual method */ }
 		
 		/**
 		 *  
 		 * 
 		 */		
-		protected function commit():void
-		{
-			
-		}
+		protected function commit():void { /* virtual method */ }
 		
 		
 		/**
 		 * @inheritDoc
 		 */
-		public function toString():String
-		{
-			return eu.kiichigo.utils.toString( this, "route" );
-		}
+		public function toString():String { return eu.kiichigo.utils.toString( this, "route" ); }
 	}
 }

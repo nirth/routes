@@ -90,7 +90,7 @@ package eu.kiichigo.route.kore
 		{
 			clear();
 			eu.kiichigo.route.utils.add(_routes, initialize)(value);
-			log("set:routes({0}):{1}", value, _routes);
+			//log("set:routes({0}):{1}", value, _routes);
 		}
 		
 		

@@ -27,6 +27,7 @@ package eu.kiichigo.route.kore
 	import eu.kiichigo.route.utils.add;
 	import eu.kiichigo.utils.log;
 
+	[DefaultProperty("list")]
 	public class Actions extends Action implements IActions
 	{
 		protected static const log:Function = eu.kiichigo.utils.log(Actions);
@@ -51,7 +52,7 @@ package eu.kiichigo.route.kore
 			eu.kiichigo.route.utils.add(_list, process)(value);
 			commit();
 			
-			log("set:list({0}):{1}", value, _list);
+			//log("set:list({0}):{1}", value, _list);
 		}
 		
 		

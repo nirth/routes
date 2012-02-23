@@ -45,6 +45,11 @@ package eu.kiichigo.vo
 			}
 		}
 		
+		public function dispatchReadOnly():void
+		{
+			dispatchEvent(new Event("readonly"));
+		}
+		
 		/**
 		 * @private
 		 */

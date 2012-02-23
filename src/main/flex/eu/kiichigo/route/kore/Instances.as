@@ -1,5 +1,6 @@
 package eu.kiichigo.route.kore
 {
+	import eu.kiichigo.route.sensors.Injects;
 	import eu.kiichigo.route.utils.Cache;
 	import eu.kiichigo.route.utils.ICache;
 	import eu.kiichigo.utils.log;
@@ -12,7 +13,7 @@ package eu.kiichigo.route.kore
 		 * @private
 		 * Logging
 		 */
-		protected static const log:Function = eu.kiichigo.utils.log( Instances );
+		protected static const log:Function = eu.kiichigo.utils.log(Instances);
 		
 		/**
 		 * @private
@@ -37,17 +38,18 @@ package eu.kiichigo.route.kore
 		public function set group(value:Object):void
 		{
 			_group = value;
-			cache = Cache.group( value );
+			cache = Cache.group(value);
 		}
 		
 		
 		/**
 		 * @copy		eu.kiichigo.route.kore.IInstance#retreive
 		 */
-		public function retreive( generator:Object ):Object
+		public function retreive(generator:Object):Object
 		{
-			if( !cache.has( generator ) )
-				cache.store( generator, new generator() );
+			if (!cache.has(generator)) {
+				cache.store(generator, new generator());
+			}
 			
 			return cache.retreive( generator );
 		}

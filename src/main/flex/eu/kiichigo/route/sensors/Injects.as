@@ -14,14 +14,12 @@ package eu.kiichigo.route.sensors
 		 * @private
 		 * Logging
 		 */
-		protected static const log:Function = eu.kiichigo.utils.log( Injects );
-		
+		protected static const log:Function = eu.kiichigo.utils.log(Injects);
 		
 		/**
 		 * @private
 		 */
-		protected const eventProxy:IEventProxy = EventProxy.create( EventProxy.FLEX );
-		
+		protected const eventProxy:IEventProxy = EventProxy.create(EventProxy.FLEX);
 		
 		
 		/**
@@ -29,7 +27,7 @@ package eu.kiichigo.route.sensors
 		 */
 		override protected function initialize():void
 		{
-			//application.addEventListener( Event.ADDED_TO_STAGE, handle, true );
+			eventProxy.addEventListener(Event.ADDED_TO_STAGE, handle, true);
 			//parent.addEventListener( BuildEvent.BUILD, handle );
 		}
 		
@@ -47,7 +45,7 @@ package eu.kiichigo.route.sensors
 		/**
 		 * @private
 		 */
-		protected function handle( event:Event ):void
+		protected function handle(event:Event):void
 		{	
 			pass( event is BuildEvent ? ( event as BuildEvent ).instance : event.target );
 		}

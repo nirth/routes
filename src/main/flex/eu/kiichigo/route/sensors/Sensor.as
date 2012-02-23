@@ -115,7 +115,7 @@ package eu.kiichigo.route.sensors
 		 */
 		public function pass(percept:Object):void
 		{
-			log("pass({0}) => {1}", percept, routes);
+			//log("pass({0}) => {1}", percept, routes);
 			for (var i:uint = 0; i < routes.length; i ++)
 				routes[i].perceive(percept);
 		}

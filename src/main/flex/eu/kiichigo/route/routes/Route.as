@@ -42,7 +42,7 @@ package eu.kiichigo.route.routes
 
 			_actions.route = this;
 			
-			instance::sensor.add( this );
+			instance::sensor.add(this);
 		}
 		
 		/**
@@ -166,7 +166,7 @@ package eu.kiichigo.route.routes
 		 */
 		public function perceive(percept:Object):Object
 		{
-			log("perceive({0})", percept);
+			//log("perceive({0})", percept);
 			
 			if (pattern == null ||
 				!(pattern is IPattern ? pattern.match(percept) : pattern(percept)))

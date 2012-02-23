@@ -37,10 +37,10 @@ package eu.kiichigo.route.sensors
 				
 			if( mode == FLEX )
 			{
-				var app:IEventDispatcher = getDefinitionByName("mx.core.FlexGlobals")["topLevelApplication"];
+				const app:IEventDispatcher = getDefinitionByName("mx.core.FlexGlobals")["topLevelApplication"];
 				ep.add(app);
 				
-				log("EventProxy.create({0}):{1}", mode, app);
+				//log("EventProxy.create({0}):{1}", mode, app);
 			}
 			
 			return ep;
